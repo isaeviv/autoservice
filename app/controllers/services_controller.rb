@@ -45,7 +45,7 @@ class ServicesController < ApplicationController
     end
 
     def permitted_service_params
-      params[:service].permit(:name, :order_id, :price)
+      params[:service].permit(:name, :order_id, :specialist_id, :price)
     end
   
 end
