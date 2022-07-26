@@ -1,6 +1,6 @@
  require 'rails_helper'
 
-RSpec.describe OrdersController, type: :request do
+RSpec.describe "Orders", type: :request do
   
   it "index" do
     order_1 = Order.create(client_name:"test", client_phone_number:"8 984 382 12 32")
