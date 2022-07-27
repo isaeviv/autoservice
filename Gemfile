@@ -25,6 +25,7 @@ gem 'bootstrap'
 gem 'haml-rails'
 gem 'cocoon'
 gem 'caxlsx_rails'
+gem 'devise'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
