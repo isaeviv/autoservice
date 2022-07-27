@@ -11,6 +11,11 @@
     %p 
       Номер телефона заказчика: 
       = @order.client_phone_number
+    %p
+      Описание:
+    - if @order.description.present?  
+      .alert.alert-warning
+        = @order.description  
     %p 
       Услуги:
       .table-responsive

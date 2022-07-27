@@ -15,11 +15,11 @@
   .mb-3
     = f.label      :description, class: "form-label"
     = f.text_area :description, class: "form-control"
-  %h3 Services
+  %h3 Услуги
   #services.mb-3
     = f.fields_for :services do |service|
       = render "service_fileds", f: service
     .links
       = link_to_add_association "Добавить услугу", f, :services, class: 'btn btn-success', partial: "service_fileds"
   .actions
-    = f.submit 'Save', class: "btn btn-primary"
+    = f.submit 'Сохранить', class: "btn btn-primary"
