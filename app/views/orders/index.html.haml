@@ -1,19 +1,45 @@
-%h1 Listing orders
-
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
-
-  %tbody
-    - @orders.each do |order|
-      %tr
-        %td= link_to 'Show', order
-        %td= link_to 'Edit', edit_order_path(order)
-        %td= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Order', new_order_path
+.mb-3
+  %span.h1 
+    Заказы
+  = link_to 'Новый заказ', new_order_path, class: "btn btn-success float-end mt-2"
+- @orders.each do |order|
+  .card
+    .card-header
+      %h5 
+        = "Заказ номер #{order.id}"
+    .card-body.bg-info.bg-opacity-25
+      %p 
+        Имя заказчика: 
+        = order.client_name
+      %p 
+        Номер телефона заказчика: 
+        = order.client_phone_number
+      %p 
+        Услуги:
+        .table-responsive
+          %table.table.table-striped
+            %thead
+              %tr
+                %th
+                  Наименование
+                %th
+                  Категория
+                %th
+                  Цена
+                %th
+                  Специалист
+            %tbody
+              - order.services.each do |service|
+                %tr
+                  %td
+                    = service.name
+                  %td
+                    = service.category.name
+                  %td
+                    = service.price
+                  %td
+                    = service.specialist.name
+      .btn-group
+        = link_to 'Открыть', order, class: "btn btn-primary"
+        = link_to 'Редактировать', edit_order_path(order), class: "btn btn-warning"
+      = button_to 'Удалить', order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-end"

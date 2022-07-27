@@ -1,2 +1,18 @@
-%h1 Categories#index
-%p Find me in app/views/categories/index.html.haml
+.mb-3
+  %span.h1 
+    Категории услуг
+  = link_to 'Новая категория', new_category_path, class: "btn btn-success float-end mt-2"
+- @categories.each do |category|
+  .card.mb-3
+    .card-header
+      %h5 
+        = category.name
+    .card-body.bg-info.bg-opacity-25
+      %p 
+        = link_to "#", class: "btn btn-secondary mx-1" do
+          Услуги
+          %span.badge.text-bg-danger
+            = category.services.count
+      .btn-group.mx-1
+        = link_to 'Редактировать', edit_category_path(category), class: "btn btn-warning"
+      = button_to 'Удалить', category, method: :delete, data: { confirmation: "fgeg", bs_toggle: "modal", bs_target: "#confirmation-modal" }, class: "btn btn-danger float-end"

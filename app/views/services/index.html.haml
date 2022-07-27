@@ -1,2 +1,19 @@
-%h1 Services#index
-%p Find me in app/views/services/index.html.haml
+%h1 Услуги
+
+- @services.each do |service|
+  .card.mb-3
+    .card-header
+      %h5 
+        = service.name
+    .card-body.bg-info.bg-opacity-25
+      %p 
+        Цена: 
+        = service.price
+      %p 
+        Исполнитель:
+        = service.specialist.name
+      %p 
+        Категория:
+        = service.category&.name
+      = button_to 'Удалить', service, method: :delete, class: "btn btn-danger float-end"
+        

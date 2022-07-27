@@ -18,7 +18,7 @@ class SpecialistsController < ApplicationController
 
   def update
     if @specialist.update permitted_specialist_params
-      redirect_to specialist_url(@specialist), notice: "specialist was successfully updated."
+      redirect_to specialists_path, notice: "specialist was successfully updated."
     else
       render :edit
     end
@@ -28,7 +28,7 @@ class SpecialistsController < ApplicationController
     @specialist = Specialist.new(permitted_specialist_params)
 
     if @specialist.save
-      redirect_to specialist_url(@specialist), notice: "specialist was successfully created."
+      redirect_to specialists_path, notice: "specialist was successfully created."
     else
       render :new
     end

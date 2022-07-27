@@ -1,2 +1,4 @@
-%h1 Specialists#new
-%p Find me in app/views/specialists/new.html.haml
+%h1 Новый специалист
+= render "form"
+
+= link_to 'Back', specialists_path, class: "btn btn-secondary my-3"

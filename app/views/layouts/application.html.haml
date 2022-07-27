@@ -7,6 +7,29 @@
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    %script{ src: "https://code.jquery.com/jquery-3.6.0.min.js", 
+             integrity: "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=",
+             crossorigin: "anonymous" 
+    }
     = javascript_importmap_tags
   %body
-    = yield
+    %header.sticky-top
+      %nav.navbar.navbar-expand-lg.navbar-light.bg-dark.bg-gradient.text-white
+        .container
+          = link_to "Autoservice", "#", class: "navbar-brand text-white"
+          %button.navbar-toggler.bg-white{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNav", "data-bs-toggle" => "collapse", :type => "button"}
+            %span.navbar-toggler-icon
+          .collapse.navbar-collapse#navbarNav
+            %ul.nav.nav-pills
+              %li.nav-item
+                = link_to "Заказы", orders_path, class: 'nav-link'
+              %li.nav-item
+                = link_to "Услуги", services_path, class: 'nav-link'
+              %li.nav-item
+                = link_to "Категории услуг", categories_path, class: 'nav-link'
+              %li.nav-item
+                = link_to "Исполнители", specialists_path, class: 'nav-link'
+    .container
+      .row
+        .col-12
+          = yield
