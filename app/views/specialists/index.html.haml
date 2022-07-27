@@ -1,2 +1,29 @@
-%h1 Specialists#index
-%p Find me in app/views/specialists/index.html.haml
+.mb-3
+  %span.h1 
+    Исполнители
+  = link_to 'Новый исполнитель', new_specialist_path, class: "btn btn-success float-end mt-2"
+
+.row
+  - @specialists.each do |specialist|
+    .col-xl-4.col-lg-6.mb-3
+      .card
+        .card-header
+          %h5 
+            = specialist.name
+        .card-body.bg-info.bg-opacity-25
+          %p 
+            Должность: 
+            = specialist.profession
+          %p 
+            = link_to "#", class: "btn btn-secondary mx-1" do
+              Услуги
+              %span.badge.text-bg-danger
+                = specialist.services.count
+            = link_to "#", class: "btn btn-secondary mx-1" do
+              Заказы
+              %span.badge.text-bg-danger
+                = specialist.orders.count
+          .btn-group.mx-1
+            = link_to 'Редактировать', edit_specialist_path(specialist), class: "btn btn-warning"
+          = button_to 'Удалить', specialist, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-end"
+          

@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'bootstrap'
 gem 'haml-rails'
+gem 'cocoon'
 gem 'caxlsx_rails'
 
 # Use Active Storage variant

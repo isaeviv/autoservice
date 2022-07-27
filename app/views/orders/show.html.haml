@@ -1,6 +1,47 @@
 %p#notice= notice
 
-
-= link_to 'Edit', edit_order_path(@order)
-\|
-= link_to 'Back', orders_path
+.card
+  .card-header
+    %h5 
+      = "Заказ номер #{@order.id}"
+  .card-body.bg-info.bg-opacity-25
+    %p 
+      Имя заказчика: 
+      = @order.client_name
+    %p 
+      Номер телефона заказчика: 
+      = @order.client_phone_number
+    %p
+      Описание:
+    - if @order.description.present?  
+      .alert.alert-warning
+        = @order.description  
+    %p 
+      Услуги:
+      .table-responsive
+        %table.table.table-striped
+          %thead
+            %tr
+              %th
+                Наименование
+              %th
+                Категория
+              %th
+                Цена
+              %th
+                Специалист
+          %tbody
+            - @order.services.each do |service|
+              %tr
+                %td
+                  = service.name
+                %td
+                  = service.category.name
+                %td
+                  = service.price
+                %td
+                  = service.specialist.name
+    .btn-group
+      = link_to 'Редактировать', edit_order_path(@order), class: "btn btn-warning"
+    = button_to 'Удалить', @order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-end"
+= link_to 'Назад', orders_path, class: "btn btn-secondary my-3"

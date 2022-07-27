@@ -53,6 +53,9 @@ class OrdersController < ApplicationController
 
 
     def permitted_order_params
-      params[:order].permit(:client_name, :client_phone_number, :description)
+      params[:order].permit(:client_name, 
+        :client_phone_number, 
+        :description,
+        services_attributes: [:name, :order_id, :specialist_id, :category_id, :price])
     end
 end

@@ -1,2 +1,5 @@
-%h1 Categories#new
-%p Find me in app/views/categories/new.html.haml
+%h1 Новая категория услуг
+= render "form"
+
+= link_to 'Назад', categories_path, class: "btn btn-secondary my-3"
+
