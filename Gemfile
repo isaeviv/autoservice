@@ -24,8 +24,12 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootstrap'
 gem 'haml-rails'
 gem 'cocoon'
+gem "font-awesome-sass"
 gem 'caxlsx_rails'
+
 gem 'devise'
+
+gem "pry"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
