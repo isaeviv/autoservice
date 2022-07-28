@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Specialists", type: :request do
+  
+  before do
+    sign_in @user = User.create(email: "test@example.com", password: "password")
+  end
 
   it "index" do
     specialist_1 = Specialist.create(name:"test", profession: "автоэлектрик")

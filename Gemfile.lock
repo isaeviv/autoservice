@@ -124,6 +124,8 @@ GEM
     erubis (2.7.0)
     execjs (2.8.1)
     ffi (1.15.5)
+    font-awesome-sass (6.1.2)
+      sassc (~> 2.0)
     formatador (1.1.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -362,6 +364,7 @@ DEPENDENCIES
   cocoon
   database_cleaner
   devise
+  font-awesome-sass
   guard-rails
   haml-rails
   i18n-tasks
@@ -369,6 +372,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg
+  pry
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (= 7.0.0)

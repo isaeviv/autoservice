@@ -1,0 +1,18 @@
+%h2.mb-3 Изменить пароль
+.row.justify-content-center
+  .col-lg-4.d-flex.flex-column.justify-content-center
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      = f.hidden_field :reset_password_token
+      .field.mb-3
+        = f.label :password, "Новый пароль", class: "form-label"
+        - if @minimum_password_length
+          %em
+            (#{@minimum_password_length} characters minimum)
+        = f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control"
+      .field.mb-3
+        = f.label :password_confirmation, "Подтверждение пароля", class: "form-label"
+        = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
+      .actions.mb-3
+        = f.submit "Сменить пароль", class: "btn btn-success w-100"
+    = render "devise/shared/links"

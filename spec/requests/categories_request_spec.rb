@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Categories", type: :request do
+  
+  before do
+    sign_in @user = User.create(email: "test@example.com", password: "password")
+  end
 
   it "index" do
     category_1 = Category.create(name:"test")

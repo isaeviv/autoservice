@@ -1,6 +1,10 @@
- require 'rails_helper'
+require 'rails_helper'
 
 RSpec.describe "Orders", type: :request do
+  
+  before do
+    sign_in @user = User.create(email: "test@example.com", password: "password")
+  end
   
   it "index" do
     order_1 = Order.create(client_name:"test", client_phone_number:"8 984 382 12 32")

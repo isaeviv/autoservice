@@ -17,18 +17,25 @@
       %nav.navbar.navbar-expand-lg.navbar-light.bg-dark.bg-gradient.text-white
         .container
           = link_to "Autoservice", "#", class: "navbar-brand text-white"
-          %button.navbar-toggler.bg-white{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNav", "data-bs-toggle" => "collapse", :type => "button"}
-            %span.navbar-toggler-icon
-          .collapse.navbar-collapse#navbarNav
-            %ul.nav.nav-pills
-              %li.nav-item
-                = link_to "Заказы", orders_path, class: 'nav-link'
-              %li.nav-item
-                = link_to "Услуги", services_path, class: 'nav-link'
-              %li.nav-item
-                = link_to "Категории услуг", categories_path, class: 'nav-link'
-              %li.nav-item
-                = link_to "Исполнители", specialists_path, class: 'nav-link'
+          - if current_user.present?
+            %button.navbar-toggler.bg-white{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNav", "data-bs-toggle" => "collapse", :type => "button"}
+              %span.navbar-toggler-icon
+            .collapse.navbar-collapse#navbarNav
+              %ul.nav.nav-pills
+                %li.nav-item
+                  = link_to "Заказы", orders_path, class: 'nav-link'
+                %li.nav-item
+                  = link_to "Услуги", services_path, class: 'nav-link'
+                %li.nav-item
+                  = link_to "Категории услуг", categories_path, class: 'nav-link'
+                %li.nav-item
+                  = link_to "Исполнители", specialists_path, class: 'nav-link'
+            .float-end.mx-3
+              %span.badge.rounded-pill.text-bg-success
+                = current_user.email
+            .float-end
+              = button_to destroy_user_session_path, method: :delete, class: "btn btn-warning" do
+                %i.fa-solid.fa-right-from-bracket
     .container
       .row
         .col-12

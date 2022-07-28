@@ -1,0 +1,17 @@
+%h2.mb-3 Вход
+.row.justify-content-center
+  .col-lg-4.d-flex.flex-column.justify-content-center
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .field.mb-3
+        = f.label :email, class: "form-label"
+        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "just use the 'admin@example.com'", class: "form-control"
+      .field.mb-3
+        = f.label :password, class: "form-label"
+        = f.password_field :password, autocomplete: "current-password", placeholder: "just use the 'password'", class: "form-control"
+      - if devise_mapping.rememberable?
+        .field.mb-3
+          = f.check_box :remember_me, class: "form-check-input", id: "rememberMeCheckBox"
+          = f.label :remember_me, class: "form-check-label", for: "rememberMeCheckBox"
+      .actions.mb-3
+        = f.submit "Войти", class: "btn btn-success w-100"
+    = render "devise/shared/links"
