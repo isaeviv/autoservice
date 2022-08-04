@@ -3,10 +3,16 @@
     Заказы
   = link_to 'Новый заказ', new_order_path, class: "btn btn-success float-end mt-2"
 - @orders.each do |order|
-  .card
+  .card.mb-3
     .card-header
-      %h5 
-        = "Заказ номер #{order.id}"
+      .float-start
+        .h5 
+          = "Заказ номер #{order.id}"
+      .float-end
+        .h5
+          Сумма:
+          %span.badge.text-bg-primary
+            = order.price
     .card-body.bg-info.bg-opacity-25
       %p 
         Имя заказчика: 
@@ -38,7 +44,7 @@
                   %td
                     = service.price
                   %td
-                    = service.specialist.name
+                    = service.specialist.name + "(#{service.specialist.profession})"
       .btn-group
         = link_to 'Открыть', order, class: "btn btn-primary"
         = link_to 'Редактировать', edit_order_path(order), class: "btn btn-warning"

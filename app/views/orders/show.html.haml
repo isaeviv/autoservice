@@ -2,8 +2,14 @@
 
 .card
   .card-header
-    %h5 
-      = "Заказ номер #{@order.id}"
+    .float-start
+      .h5 
+        = "Заказ номер #{@order.id}"
+    .float-end
+      .h5
+        Сумма:
+        %span.badge.text-bg-primary
+          = @order.price
   .card-body.bg-info.bg-opacity-25
     %p 
       Имя заказчика: 
@@ -40,7 +46,7 @@
                 %td
                   = service.price
                 %td
-                  = service.specialist.name
+                  = service.specialist.name + "(#{service.specialist.profession})"
     .btn-group
       = link_to 'Редактировать', edit_order_path(@order), class: "btn btn-warning"
     = button_to 'Удалить', @order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-end"
