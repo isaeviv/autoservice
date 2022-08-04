@@ -58,6 +58,6 @@ class OrdersController < ApplicationController
       params[:order].permit(:client_name, 
         :client_phone_number, 
         :description,
-        services_attributes: [:name, :order_id, :specialist_id, :category_id, :price])
+        services_attributes: [:id, :name, :order_id, :specialist_id, :category_id, :price, :_destroy])
     end
 end
