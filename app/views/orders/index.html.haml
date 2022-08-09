@@ -1,7 +1,35 @@
-.mb-3
-  %span.h1 
-    Заказы
-  = link_to 'Новый заказ', new_order_path, class: "btn btn-success float-end mt-2"
+.row.my-3.justify-content-between
+  .col-4
+    %span.h1 
+      Заказы
+  .col-4
+    = link_to 'Новый заказ', new_order_path, class: "btn btn-success float-end mt-2"
+.accordion.my-3
+  .accordion-item
+    %h1.accordion-header#headingOne
+      %button.accordion-button.collapsed{ "type" => "button", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapseOne", "aria-expanded" => "true", "aria-controls" => "collapseOne" } 
+        Фильтрация
+    #collapseOne.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#accordionExample"}
+      .accordion-body
+        = form_with url: url_for(controller: params[:controller], action: :index), method: :get do |f|
+          .row
+            .col-lg-4.mb-3
+              .input-group
+                %span.input-group-text
+                  Имя клиента
+                = f.text_field :client_name, value: params[:client_name], class: "form-control"
+            .col-lg-4.mb-3
+              .input-group
+                %span.input-group-text
+                  Сумма от 
+                = f.text_field :price_start, value: params[:price_start],class: "form-control"
+                %span.input-group-text
+                  до 
+                = f.text_field :price_end, value: params[:price_end],class: "form-control"
+            .col.col-lg-4.mb-3
+              .btn-group.w-100
+                = link_to "Сбросить", orders_path, class: "btn btn-secondary", id: "clear-filters"
+                = f.submit "Применить фильтры", class: "btn btn-primary"
 - @orders.each do |order|
   .card.mb-3
     .card-header
@@ -45,7 +73,10 @@
                     = service.price
                   %td
                     = service.specialist.name + "(#{service.specialist.profession})"
-      .btn-group
-        = link_to 'Открыть', order, class: "btn btn-primary"
-        = link_to 'Редактировать', edit_order_path(order), class: "btn btn-warning"
-      = button_to 'Удалить', order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-end"
+      .row.justify-content-between
+        .col-3
+          .btn-group
+            = link_to 'Открыть', order, class: "btn btn-primary"
+            = link_to 'Редактировать', edit_order_path(order), class: "btn btn-warning"
+        .col-1
+          = button_to 'Удалить', order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-end"

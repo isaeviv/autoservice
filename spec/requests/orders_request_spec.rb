@@ -78,4 +78,30 @@ RSpec.describe "Orders", type: :request do
     expect { delete "/orders/#{order.id}" }.to change{ Order.count }.from(1).to(0)
   end
   
+  describe "filtering" do
+    
+    before do
+      @order_1 = create :order_with_services, client_name: "Васёк"
+      @order_2 = create :order, client_name: "Игорёк"
+    end
+    
+    it "by client name" do
+      get "/orders", params: {
+        client_name: "Васёк"
+      }
+      expect(assigns :orders).to include @order_1
+      expect(assigns :orders).not_to include @order_2
+    end
+    
+    it "by price" do
+      get "/orders", params: {
+        price_start: "9900",
+        price_end: "10100"
+      }
+      expect(assigns :orders).to include @order_1
+      expect(assigns :orders).not_to include @order_2
+    end
+    
+  end
+  
 end
