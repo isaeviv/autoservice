@@ -1,5 +1,7 @@
 class Order < ApplicationRecord
   
+  include Filterable
+  
   has_many :services
   has_many :specialists, through: :services
   
@@ -10,6 +12,9 @@ class Order < ApplicationRecord
   before_update :set_price
   
   accepts_nested_attributes_for :services, allow_destroy: true
+  
+  scope :filter_by_client_name, -> (client_name) { where client_name: client_name }
+  scope :filter_by_price, -> (price) { where price: price }
   
   def set_price
     self.price = 0

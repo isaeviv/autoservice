@@ -3,9 +3,8 @@ class OrdersController < ApplicationController
   # load_and_authorize_resource
   before_action :set_order, only: %i[ show edit update destroy ]
 
-
   def index
-    @orders = Order.all
+    @orders = Order.filter(params.slice(:client_name, :price_start, :price_end))
   end
 
 
