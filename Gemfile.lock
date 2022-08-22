@@ -362,7 +362,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
-  bootstrap
+  bootstrap (= 5.2.0)
   byebug
   capybara (>= 3.26)
   caxlsx_rails

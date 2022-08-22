@@ -21,7 +21,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'bootstrap'
+gem 'bootstrap', '5.2.0'
 gem 'haml-rails'
 gem 'cocoon'
 gem "font-awesome-sass"
