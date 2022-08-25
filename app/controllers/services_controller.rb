@@ -4,7 +4,8 @@ class ServicesController < ApplicationController
   before_action :set_service, only: %i[ show edit update destroy ]
   
   def index
-    @services = Service.all
+    @services = Service.filter(params.slice(:specialist, :order, :category, :price_start, :price_end,))
+    render "shared/not_found"  if @services.blank?
   end
   
   def show
