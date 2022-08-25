@@ -14,28 +14,37 @@
     = javascript_importmap_tags
   %body
     %header.sticky-top
-      %nav.navbar.navbar-expand-lg.navbar-light.bg-dark.bg-gradient.text-white
-        .container
-          = link_to "Autoservice", "#", class: "navbar-brand text-white"
+      %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.bg-gradient
+        .container-fluid
+          = link_to "AutoService", root_path, class: "navbar-brand text-white"
           - if current_user.present?
-            %button.navbar-toggler.bg-white{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNav", "data-bs-toggle" => "collapse", :type => "button"}
+            %button.navbar-toggler.bg-dark{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", :type => "button"}
               %span.navbar-toggler-icon
-            .collapse.navbar-collapse#navbarNav
-              %ul.nav.nav-pills
+            .collapse.navbar-collapse.text-white#navbarSupportedContent
+              %ul.navbar-nav.me-auto.mb-2.mb-lg-0
                 %li.nav-item
-                  = link_to "Заказы", orders_path, class: 'nav-link'
+                  = link_to "Заказы", orders_path, class: "nav-link"
                 %li.nav-item
-                  = link_to "Услуги", services_path, class: 'nav-link'
+                  = link_to "Услуги", services_path, class: "nav-link"
                 %li.nav-item
-                  = link_to "Категории услуг", categories_path, class: 'nav-link'
+                  = link_to "Категории услуг", categories_path, class: "nav-link"
                 %li.nav-item
-                  = link_to "Исполнители", specialists_path, class: 'nav-link'
-            .float-end.mx-3
-              %span.badge.rounded-pill.text-bg-success
-                = current_user.email
-            .float-end
-              = button_to destroy_user_session_path, method: :delete, class: "btn btn-warning" do
-                %i.fa-solid.fa-right-from-bracket
+                  = link_to "Исполнители", specialists_path, class: "nav-link"
+              .d-flex
+                .dropdown-center
+                  = link_to "#", class: "d-flex align-items-center link-light text-decoration-none dropdown-toggle", data: {"aria-expanded" => "false", "bs-toggle" => "dropdown"} do 
+                    = image_tag "https://github.com/mdo.png", class: "rounded-circle me-2", height: "32", width: "32"
+                    %strong 
+                      = current_user.email
+                  %ul.dropdown-menu.text-small.shadow
+                    %li
+                      = link_to "Профиль", "#", class: "dropdown-item"
+                    %li
+                      = link_to "Настройки", "#", class: "dropdown-item"
+                    %li
+                      %hr.dropdown-divider/
+                    %li
+                      = button_to "Выход", destroy_user_session_path, method: :delete, class: "btn btn-warning w-min dropdown-item"
     .container
       .row
         .col-12
