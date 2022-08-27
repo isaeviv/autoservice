@@ -4,6 +4,7 @@ class Order < ApplicationRecord
   
   has_many :services
   has_many :specialists, through: :services
+  has_one    :client
   
   validates_presence_of :client_name
   validates_presence_of :client_phone_number
