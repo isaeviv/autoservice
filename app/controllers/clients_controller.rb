@@ -16,7 +16,7 @@ class ClientsController < ApplicationController
   end
 
   def update
-    if @client.update client_params
+    if @client.update permitted_params
       redirect_to client_url(@client), notice: "Client was successfully updated."
     else
       render :edit
@@ -24,8 +24,7 @@ class ClientsController < ApplicationController
   end
 
   def create
-    @client = Client.new(client_params)
-
+    @client = Client.new(permitted_params)
     if @client.save
       redirect_to client_url(@client), notice: "Client was successfully created."
     else
@@ -46,7 +45,7 @@ class ClientsController < ApplicationController
       @client =  Client.find(params[:id])
     end
 
-    def client_params
+    def permitted_params
       params.require(:client).permit(
         :first_name, 
         :second_name, 
@@ -54,7 +53,8 @@ class ClientsController < ApplicationController
         :email, 
         :phone_number, 
         :additional_phone_number,
-        :adress
+        :description,
+        adress: [:city, :street, :building, :room]
       )
     end
 end
