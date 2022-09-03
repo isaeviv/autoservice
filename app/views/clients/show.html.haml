@@ -12,7 +12,7 @@
           .card-body
             %p
               ФИО: 
-              = " #{@client.second_name} #{@client.first_name} #{@client.patronymic}"
+              = @client.full_name_cache
             
             - if @client.description.present?  
               %p
@@ -24,12 +24,14 @@
           .card-header.bg-success.text-light
             Контакты
           .card-body
-            %p 
+            %p
               = icon("fa-solid", "phone")
+              Основной: 
               = @client.phone_number
             - if @client.additional_phone_number.present?
               %p 
                 = icon("fa-solid", "phone")
+                Запасной: 
                 = @client.additional_phone_number
             - if @client.email.present?
               %p 

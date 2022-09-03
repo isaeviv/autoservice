@@ -26,6 +26,7 @@ gem 'haml-rails'
 gem 'cocoon'
 gem "font-awesome-sass"
 gem 'caxlsx_rails'
+gem 'draper'
 
 gem 'devise'
 
