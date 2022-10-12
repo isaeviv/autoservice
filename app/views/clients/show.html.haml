@@ -1,0 +1,62 @@
+.card.my-3
+  .card-header
+    .float-start
+      .h5 
+        = "Клиент #{@client.id}"
+  .card-body.bg-secondary.bg-opacity-25
+    .row
+      .col
+        .card.mb-3
+          .card-header.bg-primary.text-light
+            Информация
+          .card-body
+            %p
+              ФИО: 
+              = @client.full_name_cache
+            
+            - if @client.description.present?  
+              %p
+                Описание:
+                .alert.alert-warning
+                  = @client.description
+      .col
+        .card.mb-3
+          .card-header.bg-success.text-light
+            Контакты
+          .card-body
+            %p
+              = icon("fa-solid", "phone")
+              Основной: 
+              = @client.phone_number
+            - if @client.additional_phone_number.present?
+              %p 
+                = icon("fa-solid", "phone")
+                Запасной: 
+                = @client.additional_phone_number
+            - if @client.email.present?
+              %p 
+                = icon("fa-solid", "envelope")
+                = @client.email
+      .col
+        - if @client.adress.present?
+          .card.mb-3
+            .card-header.bg-danger.text-light
+              Адрес
+            .card-body
+              %p 
+                Город: 
+                = @client.adress["city"]
+              %p 
+                Улица: 
+                = @client.adress["street"]
+              %p 
+                Дом: 
+                = @client.adress["building"]
+              %p 
+                Кабинет/комната: 
+                = @client.adress["room"]
+    .btn-group
+      = link_to 'Редактировать', edit_client_path(@client), class: "btn btn-warning"
+    .d-inline.float-end
+      = delete_button @client
+= link_to 'Назад', clients_path, class: "btn btn-secondary my-3"

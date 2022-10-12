@@ -1,0 +1,37 @@
+.row.my-3.justify-content-between
+  .col-4
+    %span.h1 
+      Клиенты
+  .col-4
+    = link_to new_client_path, class: "btn btn-success float-end mt-2" do
+      = icon "fa-solid", "circle-plus"
+.table-responsive
+  %table.table.table-sm
+    %thead
+      %th id
+      %th Fullname
+      %th Phone number
+      %th Email
+      %th Actions
+    %tbody  
+      - @clients.map do |client|
+        %tr
+          %th
+            = client.id
+          %td
+            = link_to client_path(client), class: "text-decoration-none" do
+              = client.full_name_cache
+          %td
+            = client.phone_number
+          %td
+            = client.email
+          %td
+            .row
+              .col.p-o
+                .btn-group
+                  = link_to client_path(client), class: "btn btn-success btn-sm" do
+                    = icon("fa-solid", "id-card")
+                  = link_to edit_client_path(client), class: "btn btn-warning btn-sm" do
+                    = icon("fa-solid", "user-pen")
+              .col.p-0
+                = delete_button client, css_class: "mx-1 btn-sm"

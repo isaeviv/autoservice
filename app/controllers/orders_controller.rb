@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
 
   def index
-    @orders = Order.filter(params.slice(:client_name, :price_start, :price_end))
+    @orders = Order.filter(params.slice(:client_id, :price_start, :price_end))
   end
 
 
@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
 
 
   def create
-    @order = Order.new(permitted_order_params)
+    @order = Order.new(permitted_params)
 
     if @order.save
       redirect_to order_url(@order), notice: "Order was successfully created."
@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
 
 
   def update
-    if @order.update(permitted_order_params)
+    if @order.update(permitted_params)
       redirect_to order_url(@order), notice: "Order was successfully updated."
     else
       render :edit
@@ -53,9 +53,8 @@ class OrdersController < ApplicationController
     end
 
 
-    def permitted_order_params
-      params[:order].permit(:client_name, 
-        :client_phone_number, 
+    def permitted_params
+      params[:order].permit(:client_id, 
         :description,
         services_attributes: [:id, :name, :order_id, :specialist_id, :category_id, :price, :_destroy])
     end

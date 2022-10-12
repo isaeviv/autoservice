@@ -5,6 +5,7 @@ class Service < ApplicationRecord
   belongs_to :order
   belongs_to :specialist, optional: true
   belongs_to :category, optional: true
+  has_one    :client
   
   scope :filter_by_order, -> (order_id) { where order_id: order_id }
   scope :filter_by_price, -> (price) { where price: price }
