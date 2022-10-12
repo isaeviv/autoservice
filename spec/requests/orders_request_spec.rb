@@ -7,8 +7,8 @@ RSpec.describe "Orders", type: :request do
   end
   
   it "index" do
-    order_1 = Order.create(client_name:"test", client_phone_number:"8 984 382 12 32")
-    order_2 = Order.create(client_name:"test2", client_phone_number:"8 984 382 00 32")
+    order_1 = create(:order)
+    order_2 = create(:order)
     get "/orders"
     expect(assigns(:orders)).to contain_exactly *[ order_1, order_2 ]  
   end
@@ -20,15 +20,31 @@ RSpec.describe "Orders", type: :request do
   
   describe "create" do
     
+    let(:client)  { create :client }
+    let(:specialist)  { create :specialist }
+    let(:category) { create :category }
+  
     it "success" do
-      post "/orders", params: {
-        order: {
-          client_name: "Testname",
-          client_phone_number: "89873192832"
+      expect{ 
+        post "/orders", params: {
+          order: {
+            client_id: client.id,
+            description: "order description",
+            services_attributes:{
+              Time.now.to_i => {
+                name: "service name",
+                specialist_id: specialist.id,
+                price: 500,
+                category_id: category.id
+              }
+            }
+          }
         }
-      }
+      }.to change{ Order.count }
       expect(response).to be_redirect
-      expect(Order.last.client_name).to eq "Testname"
+      order = Order.last
+      expect(order.client).to eq client
+      expect(order.services.last.name).to eq "service name"
     end
     
     it "failure" do
@@ -45,52 +61,56 @@ RSpec.describe "Orders", type: :request do
   
   describe "update" do
     
+    let(:client_1){ create(:client) }
+    let(:client_2){ create(:client) }
+    let(:order){ create(:order, client: client_1) }
+
     it "success" do
-      order = Order.create(client_name: "test", client_phone_number: "7 983 198 3212")
-      patch "/orders/#{order.id}", params: {
-        order: {
-          client_name: "updated"
+      expect{ 
+        patch "/orders/#{order.id}", params: {
+          order: {
+            client_id: client_2.id
+          }
         }
-      }
-      expect(order.reload.client_name).to eq "updated"
+      }.to change{ order.reload.client }.from(client_1).to(client_2)
     end
     
     it "failure" do
-      order = Order.create(client_name: "test", client_phone_number: "7 983 198 3212")
       patch "/orders/#{order.id}", params: {
         order: {
-          client_name: ""
+          client_id: ""
         }
       }
-      expect(order.reload.client_name).to eq "test"
+      expect(order.reload.client).to eq client_1
     end
     
   end
   
   it "edit" do
-    order = Order.create(client_name: "test", client_phone_number: "7 983 198 3212")
+    order =create(:order)
     get "/orders/#{order.id}/edit"
     expect(assigns(:order)).to eq order
   end
   
   it "delete" do
-    order = Order.create(client_name: "test", client_phone_number: "7 983 198 3212")
+    order = create(:order)
     expect { delete "/orders/#{order.id}" }.to change{ Order.count }.from(1).to(0)
   end
   
   describe "filtering" do
     
     before do
-      @order_1 = create :order_with_services, client_name: "Васёк"
-      @order_2 = create :order, client_name: "Игорёк"
+      @order_1 = create :order_with_services
+      @client = create :client
+      @order_2 = create :order, client: @client
     end
     
-    it "by client name" do
+    it "by client" do
       get "/orders", params: {
-        client_name: "Васёк"
+        client_id: @client.id
       }
-      expect(assigns :orders).to include @order_1
-      expect(assigns :orders).not_to include @order_2
+      expect(assigns :orders).to include @order_2
+      expect(assigns :orders).not_to include @order_1
     end
     
     it "by price" do

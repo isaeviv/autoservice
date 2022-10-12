@@ -89,8 +89,8 @@ RSpec.describe "Services", type: :request do
       @category_2 = create :category, name: "Починка"
       @specialist_1 = create :specialist, name: "Васёк", profession: "Работяга"
       @specialist_2 = create :specialist, name: "Игорёк", profession: "Столяр"
-      @order_1 = create :order, client_name: "Client_1"
-      @order_2 = create :order, client_name: "Client_2"
+      @order_1 = create :order
+      @order_2 = create :order
       @service_1 = create :service, name: "Сходить на перекур", category: @category_1, order: @order_1, price: 100, specialist: @specialist_1
       @service_2 = create :service, name: "Починить всё", category: @category_2, order: @order_2, price: 500, specialist: @specialist_2
     end

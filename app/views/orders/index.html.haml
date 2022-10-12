@@ -16,9 +16,8 @@
           .row
             .col-lg-4.mb-3
               .input-group
-                %span.input-group-text
-                  Имя клиента
-                = f.text_field :client_name, value: params[:client_name], class: "form-control"
+                = f.label :client_id, class: "input-group-text"
+                = f.collection_select :client_id, Client.all, :id, :full_name_cache, {}, { class: "form-select", value: params[:client_id] }
             .col-lg-4.mb-3
               .input-group
                 %span.input-group-text

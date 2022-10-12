@@ -4,17 +4,16 @@ class Order < ApplicationRecord
   
   has_many :services
   has_many :specialists, through: :services
-  has_one    :client
+  belongs_to  :client
   
-  validates_presence_of :client_name
-  validates_presence_of :client_phone_number
+  validates_presence_of :client
   
   before_create :set_price
   before_update :set_price
   
   accepts_nested_attributes_for :services, allow_destroy: true
   
-  scope :filter_by_client_name, -> (client_name) { where client_name: client_name }
+  scope :filter_by_client_id, -> (client_id) { where client_id: client_id }
   scope :filter_by_price, -> (price) { where price: price }
   
   def set_price
