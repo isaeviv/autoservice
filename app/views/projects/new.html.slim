@@ -1,0 +1,7 @@
+- content_for :title, "New project"
+h1
+  | New project
+= render "form", project: @project
+br
+div
+  = link_to "Back to projects", projects_path
