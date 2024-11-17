@@ -69,3 +69,5 @@ group :test do
   gem "shoulda-matchers"
   gem "rspec-mocks"
 end
+
+gem "devise", "~> 4.9"
