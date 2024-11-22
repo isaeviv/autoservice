@@ -348,6 +348,9 @@ GEM
     shoulda (2.11.3)
     shoulda-matchers (6.4.0)
       activesupport (>= 5.2.0)
+    simple_form (5.3.1)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     slim (5.2.1)
       temple (~> 0.10.0)
       tilt (>= 2.1.0)
@@ -468,6 +471,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda
   shoulda-matchers
+  simple_form
   slim-rails
   solid_cable
   solid_cache
