@@ -1,8 +1,5 @@
-p[style="color: green"]
-  = notice
-- content_for :title, "Tasks"
-h1
-  | Tasks
+- content_for :title, t('views.tasks.title')
+h1=t('views.tasks.title')
 #tasks
   - @tasks.each do |task|
     = render task

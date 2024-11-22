@@ -28,4 +28,12 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  views:
+    tasks:
+      title: Tasks
+    projects:
+      title: Projects
+    alerts:
+      error:
+        title: Error!
+

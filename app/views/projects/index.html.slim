@@ -1,8 +1,5 @@
-p[style="color: green"]
-  = notice
-- content_for :title, "Projects"
-h1
-  | Projects
+- content_for :title, t('views.projects.title')
+h1=t('views.projects.title')
 #projects
   - @projects.each do |project|
     = render project

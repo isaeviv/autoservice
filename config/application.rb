@@ -24,14 +24,20 @@ module Autoservice
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    ActionDispatch::Callbacks.before do
-      # Reload the factories
-      return unless Rails.env.development? || Rails.env.test?
+    # TODO remove after devise bug fixing in rspec
+    # ActionDispatch::Callbacks.before do
+    #   # Reload the factories
+    #   return unless Rails.env.development? || Rails.env.test?
 
-      unless FactoryGirl.factories.blank? # first init will load factories, this should only run on subsequent reloads
-        FactoryGirl.factories.clear
-        FactoryGirl.find_definitions
-      end
-    end
+    #   unless FactoryGirl.factories.blank? # first init will load factories, this should only run on subsequent reloads
+    #     FactoryGirl.factories.clear
+    #     FactoryGirl.find_definitions
+    #   end
+    # end
+
+
+    config.sass.preferred_syntax = :sass
+    config.sass.line_comments = false
+    config.sass.cache = false
   end
 end

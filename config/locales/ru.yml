@@ -1,0 +1,9 @@
+ru:
+  views:
+    tasks:
+      title: Задачи
+    projects:
+      title: Проекты
+    alerts:
+      error:
+        title: Ошибка!
