@@ -1,0 +1,16 @@
+ru:
+  activerecord:
+    attributes:
+      task:
+        title: Заголовок
+        description: Описание
+        status: Статус
+        statuses:
+          open: Открыта
+          in_progress: В работе
+          suspended: Приостановлена
+          completed: Завершена
+          closed: Закрыта
+        user: Пользователь
+        project: Проект
+        

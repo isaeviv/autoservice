@@ -1,0 +1,16 @@
+kjh:
+  activerecord:
+    attributes:
+      task:
+        title: Заголовок
+        description: Пасханы
+        status: Оңдай
+        statuses:
+          open: Азых
+          in_progress: Тоғыста
+          suspended: Тохта
+          completed: Тоозылған
+          closed: Чабыл
+        user: Пользователь
+        project: Проект
+        

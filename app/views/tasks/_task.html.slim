@@ -1,7 +1,8 @@
 .card.mb-2
   .card-body.px-2.py-1
-    .mb-1.d-inline.w-auto.text-dark
+    .mb-1.d-inline.w-auto
       = link_to task.title, task, class: 'text-decoration-none h-6'
+      = task_status(task)
     .btn-group.float-end
       = link_to edit_task_path(task), class: 'btn btn-warning btn-sm' do
         = fa_icon('pencil')

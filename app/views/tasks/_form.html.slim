@@ -8,6 +8,7 @@
             = error.full_message
   = form.input :title
   = form.input :description
+  = form.input :status, collection: localized_statuses_collection(:task, Task.statuses)
   = form.input :user_id, collection: User.all, as: :select
   = form.input :project_id, collection: Project.all, as: :select
   = form.button :submit, class: "btn-success"
