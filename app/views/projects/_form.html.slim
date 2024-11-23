@@ -1,12 +1,12 @@
-= form_with(model: project) do |form|
+= simple_form_for(project) do |form|
   - if project.errors.any?
-    div[style="color: red"]
-      h2
-        = pluralize(project.errors.count, "error")
-        |  prohibited this project from being saved:
+    .alert.alert-danger
+      h5.alert-heading=t('views.alerts.error.title')
       ul
         - project.errors.each do |error|
           li
             = error.full_message
-  div
-    = form.submit
+  = form.input :name
+  = form.input :description, as: :rich_text_area
+  = form.input :user_id, collection: User.all, as: :select
+  = form.button :submit, class: "btn-success"

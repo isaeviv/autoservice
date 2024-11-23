@@ -1,8 +1,9 @@
 - content_for :title, t('views.projects.title')
-h1=t('views.projects.title')
+.mb-3
+  span.h1
+    =t('views.projects.title')
+  = link_to new_project_path, class: "w-auto btn btn-success float-end" do
+    = fa_icon("plus")
 #projects
   - @projects.each do |project|
     = render project
-    p
-      = link_to "Show this project", project
-= link_to "New project", new_project_path

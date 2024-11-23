@@ -1,8 +1,19 @@
-p[style="color: green"]
-  = notice
-= render @project
-div
-  = link_to "Edit this project", edit_project_path(@project)
-  |  | 
-  = link_to "Back to projects", projects_path
-  = button_to "Destroy this project", @project, method: :delete
+h1
+  span.me-3
+    = @project.name
+div 
+  span.badge.text-bg-primary.me-1
+    | Мында
+  span.badge.text-bg-success.me-1
+    | Тегтер
+  span.badge.text-bg-warning.me-1
+    | Полар
+.mt-3
+  = @project.description
+.mt-3
+  = link_to "#", class: 'mx-1' do 
+    = @project.user.full_name
+  = local_time_ago(@project.created_at)
+.mt-3
+  = link_to t('views.actions.edit'), edit_project_path(@project), class: "btn btn-warning" 
+  = link_to t('views.actions.delete'), project_path(@project), class: "btn btn-danger mx-1", data: {'turbo-method'=> :delete}
