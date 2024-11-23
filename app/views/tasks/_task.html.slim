@@ -1,2 +1,19 @@
-#<ruby code=[dom_id="" task=""]
-  | "&gt; 
+.card.mb-2
+  .card-body.px-2.py-1
+    .mb-1.d-inline.w-auto.text-dark
+      = link_to task.title, task, class: 'text-decoration-none h-6'
+    .btn-group.float-end
+      = link_to edit_task_path(task), class: 'btn btn-warning btn-sm' do
+        = fa_icon('pencil')
+      = link_to task_path(task), class: 'btn btn-danger btn-sm', data: {'turbo-method'=> :delete} do
+        = fa_icon('trash')
+    div
+      = local_time_ago(task.created_at)
+    div 
+      span.badge.text-bg-primary.me-1
+        | Мында
+      span.badge.text-bg-success.me-1
+        | Тегтер
+      span.badge.text-bg-warning.me-1
+        | Полар
+      

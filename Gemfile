@@ -46,6 +46,9 @@ gem "sassc-rails"
 gem "bootstrap", "~> 5.3.3"
 gem 'simple_form'
 gem "rails-i18n"
+gem "local_time"
+gem "pagy"
+gem "font-awesome-rails"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
