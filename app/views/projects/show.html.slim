@@ -8,12 +8,15 @@ div
     | Тегтер
   span.badge.text-bg-warning.me-1
     | Полар
-.mt-3
+  hr
+div
   = @project.description
-.mt-3
+  hr
+div
   = link_to "#", class: 'mx-1' do 
     = @project.user.full_name
   = local_time_ago(@project.created_at)
-.mt-3
+  hr
+.mb-3
   = link_to t('views.actions.edit'), edit_project_path(@project), class: "btn btn-warning" 
   = link_to t('views.actions.delete'), project_path(@project), class: "btn btn-danger mx-1", data: {'turbo-method'=> :delete}

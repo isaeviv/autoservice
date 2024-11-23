@@ -2,22 +2,22 @@ h1
   span.me-3
     = @task.title
   = task_status(@task)
-.mt-3
-  .card.bg-light
-    .card-header
-      div 
-        span.badge.text-bg-primary.me-1
-          | Мында
-        span.badge.text-bg-success.me-1
-          | Тегтер
-        span.badge.text-bg-warning.me-1
-          | Полар
-    .card-body
-      = @task.description.body
-    .card-footer
-      = link_to "#", class: 'mx-1' do 
-        = @task.user.full_name
-      = local_time_ago(@task.created_at)
-.mt-3
+div 
+  span.badge.text-bg-primary.me-1
+    | Мында
+  span.badge.text-bg-success.me-1
+    | Тегтер
+  span.badge.text-bg-warning.me-1
+    | Полар
+  hr
+div
+  = @task.description
+  hr
+div
+  = link_to "#", class: 'mx-1' do 
+    = @task.user.full_name
+  = local_time_ago(@task.created_at)
+  hr
+.mb-3
   = link_to t('views.actions.edit'), edit_task_path(@task), class: "btn btn-warning" 
   = link_to t('views.actions.delete'), task_path(@task), class: "btn btn-danger mx-1", data: {'turbo-method'=> :delete}
