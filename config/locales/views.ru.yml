@@ -7,3 +7,6 @@ ru:
     alerts:
       error:
         title: Ошибка!
+    actions:
+      edit: Редактировать
+      delete: Удалить

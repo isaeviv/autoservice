@@ -1,0 +1,12 @@
+kjh:
+  views:
+    tasks:
+      title: Задачалар
+    projects:
+      title: Проекттер
+    alerts:
+      error:
+        title: Ошибка!
+    actions:
+      edit: Алыстырарға
+      delete: Суурыбызарға

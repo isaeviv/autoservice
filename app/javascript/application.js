@@ -5,6 +5,9 @@ import "controllers"
 import "popper"
 import "bootstrap"
 import LocalTime from "local-time"
+import "trix"
+import "@rails/actiontext"
+
 (function() {
   var locale, queryString, urlParams;
 

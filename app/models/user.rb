@@ -9,4 +9,8 @@ class User < ApplicationRecord
   validates_presence_of :email
   validates_presence_of :name
   validates_presence_of :surname
+
+  def full_name
+    [name, surname].join(" ")
+  end
 end
