@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :user
+  belongs_to :workspace
   belongs_to :project, optional: true
 
   # has_many    :task_taggings, foreign_key: :autoservice_task_id

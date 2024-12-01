@@ -49,6 +49,7 @@ gem "rails-i18n"
 gem "local_time"
 gem "pagy"
 gem "font-awesome-rails"
+gem "action_policy"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -59,6 +60,9 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem 'shoulda', '~> 3.0'
+  gem "shoulda-matchers"
+  gem "rspec-mocks"
 end
 
 group :development do
@@ -66,16 +70,10 @@ group :development do
   gem "web-console"
   gem "rspec-rails"
   gem "factory_bot_rails"
-  gem "shoulda"
-  gem "shoulda-matchers"
-  gem "rspec-mocks"
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  gem "shoulda"
-  gem "shoulda-matchers"
-  gem "rspec-mocks"
 end
