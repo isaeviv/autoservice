@@ -13,46 +13,52 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/projects", type: :request do
-  
-  # This should return the minimal set of attributes required to create a valid
-  # Project. As you add validations to Project, be sure to
-  # adjust the attributes here as well.
+  let!(:user) { create(:user) }
+  let!(:workspace) { create(:workspace, owner: user) }
+  before { sign_in user }
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: 'Project name',
+      description: 'Project description',
+      user_id: user.id
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      user_id: "s"
+    }
   }
 
   describe "GET /index" do
+    let!(:project) { create :project}
     it "renders a successful response" do
-      Project.create! valid_attributes
-      get projects_url
+      get workspace_projects_url(workspace)
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
+    let!(:project) { create :project, workspace: workspace }
     it "renders a successful response" do
-      project = Project.create! valid_attributes
-      get project_url(project)
+      get workspace_project_url(workspace, project)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_project_url
+      get new_workspace_project_url(workspace)
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
+    let!(:project) { create :project, workspace: workspace }
     it "renders a successful response" do
-      project = Project.create! valid_attributes
-      get edit_project_url(project)
-      expect(response).to be_successful
+      get edit_workspace_project_url(workspace, project)
+      expect(response).to be_ok
     end
   end
 
@@ -60,72 +66,69 @@ RSpec.describe "/projects", type: :request do
     context "with valid parameters" do
       it "creates a new Project" do
         expect {
-          post projects_url, params: { project: valid_attributes }
+          post workspace_projects_url(workspace), params: { project: valid_attributes }
         }.to change(Project, :count).by(1)
       end
 
       it "redirects to the created project" do
-        post projects_url, params: { project: valid_attributes }
-        expect(response).to redirect_to(project_url(Project.last))
+        post workspace_projects_url(workspace), params: { project: valid_attributes }
+        expect(response).to redirect_to(workspace_project_url(workspace, Project.last))
       end
     end
 
     context "with invalid parameters" do
       it "does not create a new Project" do
         expect {
-          post projects_url, params: { project: invalid_attributes }
+          post workspace_projects_url(workspace), params: { project: invalid_attributes }
         }.to change(Project, :count).by(0)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post projects_url, params: { project: invalid_attributes }
+        post workspace_projects_url(workspace), params: { project: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
   describe "PATCH /update" do
+    let!(:project) { create :project, workspace: workspace }
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: 'new name'
+        }
       }
 
       it "updates the requested project" do
-        project = Project.create! valid_attributes
-        patch project_url(project), params: { project: new_attributes }
-        project.reload
-        skip("Add assertions for updated state")
+        patch workspace_project_url(workspace, project), params: { project: new_attributes }
+        expect(project.reload.name).to eq(new_attributes[:name])
       end
 
       it "redirects to the project" do
-        project = Project.create! valid_attributes
-        patch project_url(project), params: { project: new_attributes }
-        project.reload
-        expect(response).to redirect_to(project_url(project))
+        patch workspace_project_url(workspace, project), params: { project: new_attributes }
+        expect(response).to redirect_to(workspace_project_url(workspace, project))
       end
     end
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        project = Project.create! valid_attributes
-        patch project_url(project), params: { project: invalid_attributes }
+        patch workspace_project_url(workspace, project), params: { project: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
   describe "DELETE /destroy" do
+    let!(:project) { create :project, workspace: workspace }
     it "destroys the requested project" do
-      project = Project.create! valid_attributes
       expect {
-        delete project_url(project)
+        delete workspace_project_url(workspace, project)
       }.to change(Project, :count).by(-1)
     end
 
     it "redirects to the projects list" do
-      project = Project.create! valid_attributes
-      delete project_url(project)
-      expect(response).to redirect_to(projects_url)
+      delete workspace_project_url(workspace, project)
+      expect(response).to redirect_to(workspace_projects_url(workspace))
     end
   end
 end
