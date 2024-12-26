@@ -4,6 +4,8 @@ ru:
       title: Задачи
     projects:
       title: Проекты
+    workspaces:
+        title: Рабочие пространства
     alerts:
       error:
         title: Ошибка!

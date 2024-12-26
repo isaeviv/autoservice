@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many  :projects
   has_many  :tasks
+  has_many  :workspace_memberships
+  has_many  :workspaces, through: :workspace_memberships
 
   validates_presence_of :email
   validates_presence_of :name

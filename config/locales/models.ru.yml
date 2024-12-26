@@ -13,4 +13,7 @@ ru:
           closed: Закрыта
         user: Пользователь
         project: Проект
+      workspace:
+        name: Имя
+        description: Описание
         

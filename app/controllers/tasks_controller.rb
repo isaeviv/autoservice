@@ -1,9 +1,10 @@
 class TasksController < ApplicationController
+  before_action :set_parent
   before_action :set_task, only: %i[ show edit update destroy ]
 
   # GET /tasks or /tasks.json
   def index
-    @pagy, @tasks = pagy(Task.all)
+    @pagy, @tasks = pagy(@parent.tasks)
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -25,7 +26,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: "Task was successfully created." }
+        format.html { redirect_to [@parent, @task], notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: "Task was successfully updated." }
+        format.html { redirect_to [@parent, @task], notice: "Task was successfully updated." }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +53,7 @@ class TasksController < ApplicationController
     @task.destroy!
 
     respond_to do |format|
-      format.html { redirect_to tasks_path, status: :see_other, notice: "Task was successfully destroyed." }
+      format.html { redirect_to [@parent, :tasks], status: :see_other, notice: "Task was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -60,11 +61,20 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.find(params.expect(:id))
+      @task = @parent.tasks.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
+
+    def set_parent
+      @parent = if params[:project_id].present?
+          Projects.find(params[:project_id]) 
+        elsif params[:workspace_id].present?
+          Workspace.find(params[:workspace_id])
+        end
+    end
+
     def task_params
-      params.require(:task).permit(:title, :description, :project_id, :user_id, :status)
+      params.require(:task).permit(:title, :description, :project_id, :workspace_id, :user_id, :status)
     end
 end

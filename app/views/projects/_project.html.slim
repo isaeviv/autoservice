@@ -1,11 +1,11 @@
 .card.mb-2.bg-light
   .card-body.px-2.py-1
     .mb-1.d-inline.w-auto
-      = link_to project.name, project, class: 'text-decoration-none h-6'
+      = link_to project.name, [@workspace, project], class: 'text-decoration-none h-6'
     .btn-group.float-end
-      = link_to edit_project_path(project), class: 'btn btn-warning btn-sm' do
+      = link_to [:edit, @workspace, project], class: 'btn btn-warning btn-sm' do
         = fa_icon('pencil')
-      = link_to project_path(project), class: 'btn btn-danger btn-sm', data: {'turbo-method'=> :delete} do
+      = link_to [@workspace, project], class: 'btn btn-danger btn-sm', data: {'turbo-method'=> :delete} do
         = fa_icon('trash')
     div
       = local_time_ago(project.created_at)

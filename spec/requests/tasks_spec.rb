@@ -13,47 +13,59 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/tasks", type: :request do
-  let(:user) { create(:user) }
+  let!(:user) { create(:user) }
+  let!(:workspace) { create(:workspace, owner: user) }
   before { sign_in user }
   # This should return the minimal set of attributes required to create a valid
   # Task. As you add validations to Task, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+  let(:valid_attributes) { 
+    {
+      title: "Title",
+      description: "Description",
+      user_id: user.id,
+      workspace_id: workspace.id
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      user_id:  "pidoras",
+      workspace_id: workspace.id
+    }
   }
 
   describe "GET /index" do
+    let!(:task) { create :task, workspace: workspace }
     it "renders a successful response" do
-      Task.create! valid_attributes
-      get tasks_url
+      get workspace_tasks_url(workspace)
       expect(response).to be_successful
+      expect(assigns(:tasks)).to include task
     end
   end
 
   describe "GET /show" do
+    let!(:task) { create :task, workspace: workspace, user: user, project: nil }
     it "renders a successful response" do
-      task = Task.create! valid_attributes
-      get task_url(task)
+      get workspace_task_url(workspace, task)
       expect(response).to be_successful
+      expect(assigns(:task)).to eq task
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_task_url
+      get new_workspace_task_url(workspace)
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
+    let!(:task) { create :task, workspace: workspace, user: user, project: nil }
     it "renders a successful response" do
-      task = Task.create! valid_attributes
-      get edit_task_url(task)
+      get edit_workspace_task_url(task, workspace)
       expect(response).to be_successful
+      expect(assigns(:task)).to eq task
     end
   end
 
@@ -61,25 +73,25 @@ RSpec.describe "/tasks", type: :request do
     context "with valid parameters" do
       it "creates a new Task" do
         expect {
-          post tasks_url, params: { task: valid_attributes }
+          post workspace_tasks_url(workspace), params: { task: valid_attributes }
         }.to change(Task, :count).by(1)
       end
 
       it "redirects to the created task" do
-        post tasks_url, params: { task: valid_attributes }
-        expect(response).to redirect_to(task_url(Task.last))
+        post workspace_tasks_url(workspace), params: { task: valid_attributes }
+        expect(response).to redirect_to(workspace_task_url(Task.last, workspace))
       end
     end
 
     context "with invalid parameters" do
       it "does not create a new Task" do
         expect {
-          post tasks_url, params: { task: invalid_attributes }
+          post workspace_tasks_url(workspace), params: { task: invalid_attributes }
         }.to change(Task, :count).by(0)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post tasks_url, params: { task: invalid_attributes }
+        post workspace_tasks_url(workspace), params: { task: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -88,45 +100,41 @@ RSpec.describe "/tasks", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { title: 'new title' }
       }
+      let!(:task) { create :task, workspace: workspace, user: user, project: nil }
 
       it "updates the requested task" do
-        task = Task.create! valid_attributes
-        patch task_url(task), params: { task: new_attributes }
-        task.reload
-        skip("Add assertions for updated state")
+        patch workspace_task_url(workspace, task), params: { task: new_attributes }
+        expect(task.reload.title).to eq new_attributes[:title]
       end
 
       it "redirects to the task" do
-        task = Task.create! valid_attributes
-        patch task_url(task), params: { task: new_attributes }
-        task.reload
-        expect(response).to redirect_to(task_url(task))
+        patch workspace_task_path(workspace, task), params: { task: new_attributes }
+        expect(response).to redirect_to(workspace_task_url(workspace, task))
       end
     end
 
     context "with invalid parameters" do
+      let!(:task) { create :task, workspace: workspace, user: user, project: nil }
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        task = Task.create! valid_attributes
-        patch task_url(task), params: { task: invalid_attributes }
+        patch workspace_task_url(workspace, task), params: { task: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
   describe "DELETE /destroy" do
+    let!(:task) { create :task, workspace: workspace, user: user, project: nil }
     it "destroys the requested task" do
-      task = Task.create! valid_attributes
       expect {
-        delete task_url(task)
+        delete workspace_task_url(workspace, task)
       }.to change(Task, :count).by(-1)
     end
 
     it "redirects to the tasks list" do
-      task = Task.create! valid_attributes
-      delete task_url(task)
-      expect(response).to redirect_to(tasks_url)
+      delete workspace_task_url(workspace, task)
+      expect(response).to redirect_to(workspace_tasks_url(workspace))
     end
   end
 end

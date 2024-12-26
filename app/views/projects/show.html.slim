@@ -18,5 +18,5 @@ div
   = local_time_ago(@project.created_at)
   hr
 .mb-3
-  = link_to t('views.actions.edit'), edit_project_path(@project), class: "btn btn-warning" 
-  = link_to t('views.actions.delete'), project_path(@project), class: "btn btn-danger mx-1", data: {'turbo-method'=> :delete}
+  = link_to t('views.actions.edit'), [:edit, @workspace, @project], class: "btn btn-warning" 
+  = link_to t('views.actions.delete'), [@workspace, @project], class: "btn btn-danger mx-1", data: {'turbo-method'=> :delete}

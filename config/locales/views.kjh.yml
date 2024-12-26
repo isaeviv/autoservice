@@ -4,6 +4,8 @@ kjh:
       title: Задачалар
     projects:
       title: Проекттер
+    workspaces:
+        title: Чир тоғызылaр
     alerts:
       error:
         title: Ошибка!

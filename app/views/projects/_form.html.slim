@@ -1,4 +1,4 @@
-= simple_form_for(project) do |form|
+= simple_form_for [@workspace, project] do |form|
   - if project.errors.any?
     .alert.alert-danger
       h5.alert-heading=t('views.alerts.error.title')

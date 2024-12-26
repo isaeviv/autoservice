@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 = t('views.workspaces.title')
+
+#workspaces
+  - @workspaces.each do |workspace|
+    == render workspace
+    p
+      = link_to "Show this workspace", workspace
+
+= link_to "New workspace", new_workspace_path

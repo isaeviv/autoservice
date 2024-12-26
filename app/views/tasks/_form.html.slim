@@ -1,4 +1,4 @@
-= simple_form_for(task) do |form|
+= simple_form_for([@parent, task]) do |form|
   - if task.errors.any?
     .alert.alert-danger
       h5.alert-heading=t('views.alerts.error.title')

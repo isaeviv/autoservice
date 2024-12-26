@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :workspace do
     name { "MyString" }
     description { "MyText" }
-    owner { user }
+    association :owner, factory: :user
   end
 end

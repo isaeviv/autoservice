@@ -2,7 +2,7 @@
 .mb-3
   span.h1
     =t('views.tasks.title')
-  = link_to new_task_path, class: "w-auto btn btn-success float-end" do
+  = link_to [:new, @parent, :task], class: "w-auto btn btn-success float-end" do
     = fa_icon("plus")
 #tasks
   - @tasks.each do |task|

@@ -1,0 +1,13 @@
+div id="#{dom_id workspace}"
+  p
+    strong = Workspace.human_attribute_name(:name)
+    =< workspace.name
+  p
+    strong = Workspace.human_attribute_name(:description)
+    =< workspace.description
+  p
+    strong User:
+    =< workspace.user_id
+  
+  .mb-3
+    

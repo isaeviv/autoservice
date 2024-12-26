@@ -1,0 +1,11 @@
+= simple_form_for(@workspace) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors.full_messages.join(' ') if f.object.errors.present?
+
+  .form-inputs
+    = f.input :name
+    = f.input :description
+    / = f.association :user
+
+  .form-actions
+    = f.button :submit

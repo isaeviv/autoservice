@@ -2,7 +2,7 @@
 .mb-3
   span.h1
     =t('views.projects.title')
-  = link_to new_project_path, class: "w-auto btn btn-success float-end" do
+  = link_to [:new, @workspace, :project], class: "w-auto btn btn-success float-end" do
     = fa_icon("plus")
 #projects
   - @projects.each do |project|

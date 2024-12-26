@@ -1,0 +1,18 @@
+h1
+  span.me-3
+    = @workspace.name
+  hr
+.mb-3
+  dl.row
+    dt.col-sm-1= Workspace.human_attribute_name(:owner)
+    dl.col-sm-11
+      = link_to "#", class: 'mx-1' do 
+        = @workspace.owner.full_name
+    dt.col-sm-1= Workspace.human_attribute_name(:created_at)
+    dl.col-sm-11= local_time_ago(@workspace.created_at)
+
+  = @workspace.description
+  hr
+.mb-3
+  = link_to t('views.actions.edit'), [:edit, @workspace], class: "btn btn-warning" 
+  = link_to t('views.actions.delete'), [@workspace], class: "btn btn-danger mx-1", data: {'turbo-method'=> :delete}

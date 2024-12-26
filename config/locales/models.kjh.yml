@@ -2,7 +2,7 @@ kjh:
   activerecord:
     attributes:
       task:
-        title: Заголовок
+        title: Ады
         description: Пасханы
         status: Оңдай
         statuses:
@@ -13,4 +13,7 @@ kjh:
           closed: Чабыл
         user: Пользователь
         project: Проект
+      workspace:
+        name: Ады
+        description: Пасханы
         

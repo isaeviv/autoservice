@@ -7,11 +7,9 @@ RSpec.describe WorkspaceMembership, type: :model do
   end
 
   context "validations" do
-    let(:user) { create :user }
-    let(:workspace) { create :workspace, owner: user }
-
-     subject { create :workspace_membership, user: user, workspace: workspace }
-
-     it { is_expected.to validate_uniqueness_of(:user_id).scoped_to(:workspace_id) }
+    let!(:user) { create :user }
+    let!(:workspace) { create :workspace, owner: user }
+    subject { workspace.memberships.first }
+    it { is_expected.to validate_uniqueness_of(:user_id).scoped_to(:workspace_id) }
   end
 end
