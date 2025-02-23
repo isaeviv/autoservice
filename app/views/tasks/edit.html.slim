@@ -1,4 +1,5 @@
 - content_for :title, "Editing task"
+- breadcrumb :edit_task, @parent, @task
 h1
   | Editing task
 = render "form", task: @task

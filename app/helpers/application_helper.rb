@@ -17,7 +17,7 @@ module ApplicationHelper
       'closed'      => 'secondary'
     }
 
-    content_tag(:span, class: "badge text-bg-#{classes[task.status]} ms-1") do
+    content_tag(:span, class: "badge text-bg-#{classes[task.status]} rounded-pill ms-1") do
       Task.human_enum_name :status, task.status
     end
   end

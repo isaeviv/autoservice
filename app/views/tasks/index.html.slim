@@ -1,16 +1,17 @@
 - content_for :title, t('views.tasks.title')
+- breadcrumb :tasks, @parent
 .mb-3
   span.h1
     =t('views.tasks.title')
 #tasks
-  = turbo_frame_tag "tasks" do
-    .row
-      .col-10
-        == pagy_bootstrap_nav(@pagy_tasks)
-      .col-2
-        = link_to [:new, @parent, :task], class: "w-auto btn btn-success float-end", data: { turbo: false }  do
-          = fa_icon("plus")
-    .mb-3.mt-2
-      = render @tasks
-    == pagy_bootstrap_nav(@pagy_tasks)
+  / = turbo_frame_tag "tasks" do
+  .row
+    .col-10
+      == pagy_bootstrap_nav(@pagy_tasks)
+    .col-2
+      = link_to [:new, @parent, :task], class: "w-auto btn btn-success float-end", data: { turbo: false }  do
+        = fa_icon("plus")
+  .mb-3.mt-2
+    = render @tasks
+  == pagy_bootstrap_nav(@pagy_tasks)
 

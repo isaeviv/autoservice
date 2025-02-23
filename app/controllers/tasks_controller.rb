@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @pagy_tasks, @tasks = pagy(@parent.tasks, limit: 1)
+    @pagy_tasks, @tasks = pagy(@parent.tasks, limit: 30)
     respond_to do |format|
       format.turbo_stream
       format.html
@@ -63,12 +63,9 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = @parent.tasks.find(params.expect(:id))
     end
-
-    # Only allow a list of trusted parameters through.
 
     def set_parent
       @parent = if params[:project_id].present?
