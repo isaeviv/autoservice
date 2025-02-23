@@ -1,11 +1,10 @@
+- content_for :title, t('views.workspaces.title')
+.mb-3
+  span.h1
+    = t('views.workspaces.title')
+  = link_to new_workspace_path, class: "w-auto btn btn-success float-end" do
+    = fa_icon("plus")
 p style="color: green" = notice
 
-h1 = t('views.workspaces.title')
-
-#workspaces
-  - @workspaces.each do |workspace|
-    == render workspace
-    p
-      = link_to "Show this workspace", workspace
-
-= link_to "New workspace", new_workspace_path
+#workspaces.d-flex
+  = render @workspaces

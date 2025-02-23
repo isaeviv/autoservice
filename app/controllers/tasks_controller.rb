@@ -4,7 +4,11 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @pagy, @tasks = pagy(@parent.tasks)
+    @pagy_tasks, @tasks = pagy(@parent.tasks, limit: 1)
+    respond_to do |format|
+      format.turbo_stream
+      format.html
+    end
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -22,7 +26,7 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @task = Task.new(task_params)
+    @task = @parent.tasks.new(task_params)
 
     respond_to do |format|
       if @task.save
@@ -68,7 +72,7 @@ class TasksController < ApplicationController
 
     def set_parent
       @parent = if params[:project_id].present?
-          Projects.find(params[:project_id]) 
+          Projects.find(params[:project_id])
         elsif params[:workspace_id].present?
           Workspace.find(params[:workspace_id])
         end

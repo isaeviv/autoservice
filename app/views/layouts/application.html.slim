@@ -23,7 +23,13 @@ html
       .row
         .mt-3
           - if notice
-            .alert.alert-success= notice 
+            .alert.alert-success.alert-dismissible.fade.show[role='alert']
+              = notice
+              = link_to '#', class: 'btn-close', data: { 'bs-dismiss' => 'alert', 'aria-label' => 'Close' }
+                span[aria-hidden="true"]
           - if alert
-            .alert.alert-danger= alert 
+            .alert.alert-danger.alert-dismissible.fade.show
+              = alert
+              = link_to '#', class: 'btn-close', data: { 'bs-dismiss' => 'alert', 'aria-label' => 'Close' }
+                span[aria-hidden="true"]
         = yield

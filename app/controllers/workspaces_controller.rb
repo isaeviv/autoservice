@@ -1,5 +1,8 @@
 class WorkspacesController < ApplicationController
   before_action :set_workspace, only: %i[ show edit update destroy ]
+  helper_method :current_workspace
+  helper_method :tasks_scope?
+  helper_method :projects_scope?
 
   # GET /workspaces or /workspaces.json
   def index
@@ -8,8 +11,14 @@ class WorkspacesController < ApplicationController
 
   # GET /workspaces/1 or /workspaces/1.json
   def show
-    @tasks = @workspace.tasks
-    @projects = @workspace.projects
+    # @pagy_tasks, @tasks =    pagy(@workspace.tasks, params: { scope: :tasks }, limit: 2) if tasks_scope?
+  #   @pagy_projects, @projects = pagy(@workspace.projects, params: { scope: :projects }, limit: 1) if projects_scope?
+    # @projects = @workspace.projects
+    
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   # GET /workspaces/new
@@ -58,15 +67,34 @@ class WorkspacesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def current_workspace
+    @parent ||= Workspace.find_by(id: params[:id])
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_workspace
       @workspace = Workspace.find(params.expect(:id))
+      @parent ||= @workspace
     end
 
     # Only allow a list of trusted parameters through.
     def workspace_params
       params.expect(workspace: [ :name, :description, :user_id ])
+    end
+    
+    def tasks_scope?
+      params[:scope] == 'tasks'
+    end
+    
+    def projects_scope?
+      params[:scope] == 'projects'      
+    end
+    
+    def pagy_url_for(pagy, page, absolute: false)
+      params = request.query_parameters.merge(pagy.vars[:page_param] => page, only_path: !absolute)
+      binding.pry
+      url_for(params)
     end
 end

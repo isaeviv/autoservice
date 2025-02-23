@@ -1,0 +1,11 @@
+<% if @projects %>
+  <%= turbo_stream.replace "projects" do %>
+    <%= render @projects %>
+  <% end %>
+<% end %>
+
+<% if @tasks %>
+  <%= turbo_stream.replace "tasks" do %>
+    <%= render @tasks %>
+  <% end %>
+<% end %>

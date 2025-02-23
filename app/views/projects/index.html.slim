@@ -2,8 +2,14 @@
 .mb-3
   span.h1
     =t('views.projects.title')
-  = link_to [:new, @workspace, :project], class: "w-auto btn btn-success float-end" do
-    = fa_icon("plus")
 #projects
-  - @projects.each do |project|
-    = render project
+  = turbo_frame_tag "projects" do
+    .row
+      .col-10
+        == pagy_bootstrap_nav(@pagy_projects)
+      .col-2
+        = link_to [:new, @workspace, :project], class: "w-auto btn btn-success float-end", data: { turbo: false } do
+          = fa_icon("plus")
+    .mb-3.mt-2
+      = render @projects
+    == pagy_bootstrap_nav(@pagy_projects)

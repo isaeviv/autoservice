@@ -1,13 +1,5 @@
-div id="#{dom_id workspace}"
-  p
-    strong = Workspace.human_attribute_name(:name)
-    =< workspace.name
-  p
-    strong = Workspace.human_attribute_name(:description)
-    =< workspace.description
-  p
-    strong User:
-    =< workspace.user_id
+.card.w-25.m-3 id="#{dom_id(workspace)}"
+  .card-body
+    h5.card-title 
+      = link_to workspace.name, workspace_path(workspace, scope: :tasks), class: 'stretched-link undecorated-link'
   
-  .mb-3
-    

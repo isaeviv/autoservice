@@ -16,3 +16,6 @@ h1
 .mb-3
   = link_to t('views.actions.edit'), [:edit, @workspace], class: "btn btn-warning" 
   = link_to t('views.actions.delete'), [@workspace], class: "btn btn-danger mx-1", data: {'turbo-method'=> :delete}
+.mb-3
+  = link_to t('views.tasks.title'), workspace_tasks_path(@workspace, scope: :tasks), class: 'btn btn-primary mr-1'
+  = link_to t('views.projects.title'), workspace_projects_path(@workspace, scope: :projects), class: 'btn btn-secondary mx-1'

@@ -1,15 +1,11 @@
-nav.navbar.navbar-expand-lg.bg-light
+nav.navbar.navbar-dark.navbar-expand-lg.bg-primary
   .container-fluid
     = link_to 'Autoservice', root_path, class: 'navbar-brand'
     button.navbar-toggler[type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
       span.navbar-toggler-icon
   #navbarNavDropdown.collapse.navbar-collapse
     ul.navbar-nav
-      li.nav-item
-        / = link_to t('views.tasks.title'), tasks_path, class: 'nav-link'
-      / li.nav-item
-      /   = link_to t('views.projects.title'), projects_path, class: 'nav-link'
-      li.nav-item
+      li.nav-item.text-nowrap
         = link_to t('views.workspaces.title'), workspaces_path, class: 'nav-link'
       - if current_user
         li.nav-item.dropdown

@@ -4,7 +4,11 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
-    @pagy, @projects = pagy(@workspace.projects)
+    @pagy_projects, @projects = pagy(@workspace.projects)
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   # GET /projects/1 or /projects/1.json
