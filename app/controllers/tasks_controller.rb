@@ -5,10 +5,6 @@ class TasksController < ApplicationController
   # GET /tasks or /tasks.json
   def index
     @pagy_tasks, @tasks = pagy(@parent.tasks, limit: 30)
-    respond_to do |format|
-      format.turbo_stream
-      format.html
-    end
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -30,7 +26,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to [@parent, @task], notice: "Task was successfully created." }
+        format.html { redirect_to [ @parent, @task ], notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -43,7 +39,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to [@parent, @task], notice: "Task was successfully updated." }
+        format.html { redirect_to [ @parent, @task ], notice: "Task was successfully updated." }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -57,7 +53,7 @@ class TasksController < ApplicationController
     @task.destroy!
 
     respond_to do |format|
-      format.html { redirect_to [@parent, :tasks], status: :see_other, notice: "Task was successfully destroyed." }
+      format.html { redirect_to [ @parent, :tasks ], status: :see_other, notice: "Task was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -70,9 +66,9 @@ class TasksController < ApplicationController
     def set_parent
       @parent = if params[:project_id].present?
           Projects.find(params[:project_id])
-        elsif params[:workspace_id].present?
+      elsif params[:workspace_id].present?
           Workspace.find(params[:workspace_id])
-        end
+      end
     end
 
     def task_params

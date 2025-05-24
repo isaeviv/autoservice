@@ -1,11 +1,11 @@
 class Workspace < ApplicationRecord
-  belongs_to :owner, class_name: 'User', foreign_key: :user_id
-  has_many :memberships, class_name: 'WorkspaceMembership'
+  belongs_to :owner, class_name: "User", foreign_key: :user_id
+  has_many :memberships, class_name: "WorkspaceMembership", dependent: :destroy
   has_many :members, through: :memberships, source: :user
-  has_many :projects
-  has_many :tasks
+  has_many :projects, dependent: :destroy
+  has_many :tasks, dependent: :destroy
 
-  validates_presence_of :name
+  validates :name, presence: true, uniqueness: true
 
   after_create :create_owner_membership
 

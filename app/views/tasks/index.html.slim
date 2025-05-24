@@ -4,7 +4,6 @@
   span.h1
     =t('views.tasks.title')
 #tasks
-  / = turbo_frame_tag "tasks" do
   .row
     .col-10
       == pagy_bootstrap_nav(@pagy_tasks)
