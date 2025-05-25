@@ -8,5 +8,5 @@ class Task < ApplicationRecord
   validates_presence_of :title
   has_rich_text :description
 
-  enum :status, [:open, :in_progress, :suspended, :completed, :closed], default: :open
+  enum :status, [ :open, :in_progress, :suspended, :completed, :closed ], default: :open
 end

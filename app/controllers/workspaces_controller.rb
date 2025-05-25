@@ -1,5 +1,6 @@
 class WorkspacesController < ApplicationController
   before_action :set_workspace, only: %i[ show edit update destroy ]
+  before_action :authorize_workspace, only: %i[ show edit update destroy ]
   helper_method :current_workspace
   helper_method :tasks_scope?
   helper_method :projects_scope?
@@ -78,6 +79,10 @@ class WorkspacesController < ApplicationController
       @parent ||= @workspace
     end
 
+    def authorize_workspace
+      authorize @workspace
+    end
+
     # Only allow a list of trusted parameters through.
     def workspace_params
       params.expect(workspace: [ :name, :description, :user_id ])
@@ -93,7 +98,6 @@ class WorkspacesController < ApplicationController
 
     def pagy_url_for(pagy, page, absolute: false)
       params = request.query_parameters.merge(pagy.vars[:page_param] => page, only_path: !absolute)
-      binding.pry
       url_for(params)
     end
 end

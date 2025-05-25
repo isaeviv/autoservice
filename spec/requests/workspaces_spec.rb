@@ -13,11 +13,10 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/workspaces", type: :request do
-  
   let(:user) { create(:user) }
   let(:workspace) { create(:workspace, owner: user) }
   before { sign_in user }
-  
+
   let(:valid_attributes) {
     {
       name: 'Workspace',
@@ -123,7 +122,8 @@ RSpec.describe "/workspaces", type: :request do
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested workspace" do
+    let!(:workspace) { create(:workspace, owner: user) }
+     it "destroys the requested workspace" do
       expect {
         delete workspace_url(workspace)
       }.to change(Workspace, :count).by(-1)

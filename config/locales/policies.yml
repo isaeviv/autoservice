@@ -1,0 +1,27 @@
+ru:
+  pundit:
+    default: 'Вы не можете выполнить это действие.'
+    workspace_policy:
+      update?: 'Вы не можете редактировать это рабочее пространство.'
+      create?: 'Вы не можете создавать рабочие пространства.'
+      edit?: 'Вы не можете редактировать это рабочее пространство.'
+      show?: 'Вы не можете просматривать это рабочее пространство.'
+      destroy?: 'Вы не можете удалить это рабочее пространство.'
+en:
+ pundit:
+   default: 'You cannot perform this action.'
+   workspace_policy:
+     update?: 'You cannot edit this workspace.'
+     create?: 'You cannot create workspace.'
+     edit?: 'You cannot edit workspace.'
+     show?: 'You cannot show workspace.'
+     destroy?: 'You cannot destroy workspace.'
+eo:
+  pundit:
+    default: 'Vi ne povas fari ĉi tiun agon.'
+    workspace_policy:
+      update?: 'Vi ne povas redakti ĉi tiun laborspacon.'
+      create?: 'Vi ne povas krei laborspacon.'
+      edit?: 'Vi ne povas redakti ĉi tiun laborspacon.'
+      show?: 'Vi ne povas vidi ĉi tiun laborspacon.'
+      destroy?: 'Vi ne povas forigi ĉi tiun laborspacon.'
