@@ -5,6 +5,9 @@ nav.navbar.navbar-dark.navbar-expand-lg.bg-primary
       span.navbar-toggler-icon
   #navbarNavDropdown.collapse.navbar-collapse
     ul.navbar-nav
+      - if current_workspace
+        li.nav-item.text-nowrap
+          = link_to t('views.tasks.title'), workspace_tasks_path(current_workspace), class: 'nav-link'
       li.nav-item.text-nowrap
         = link_to t('views.workspaces.title'), workspaces_path, class: 'nav-link'
       - if current_user

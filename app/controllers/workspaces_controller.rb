@@ -1,6 +1,7 @@
 class WorkspacesController < ApplicationController
   before_action :set_workspace, only: %i[ show edit update destroy ]
-  helper_method :current_workspace
+  before_action :authorize_workspace, only: %i[ show edit update destroy ]
+  before_action :set_current_workspace, only: %i[ show ]
   helper_method :tasks_scope?
   helper_method :projects_scope?
 
@@ -67,8 +68,8 @@ class WorkspacesController < ApplicationController
     end
   end
 
-  def current_workspace
-    @parent ||= Workspace.find_by(id: params[:id])
+  def set_current_workspace
+    session[:current_workspace_id] = @workspace.id
   end
 
   private

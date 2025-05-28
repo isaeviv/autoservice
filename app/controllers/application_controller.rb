@@ -2,12 +2,15 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
-  # helper_method :current_workspace
-  
 
   before_action :set_locale
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  helper_method :current_workspace
+
+  def current_workspace
+    @current_workspace ||= Workspace.find_by(id: session[:current_workspace_id])
+  end
 
   protected
 
@@ -23,7 +26,17 @@ class ApplicationController < ActionController::Base
     link_to title, path, ** params, data: { turbo: false }
   end
 
+<<<<<<< Updated upstream
   # def current_workspace
  #    @workspace ||= Workspace.find_by(id: params[:id])
  #  end
+=======
+
+  private
+  def user_not_authorized(exception)
+   policy_name = exception.policy.class.to_s.underscore
+   flash[:alert] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
+   redirect_back_or_to(root_path)
+  end
+>>>>>>> Stashed changes
 end

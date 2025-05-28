@@ -9,6 +9,6 @@
   = form.input :title
   = form.input :description, as: :rich_text_area
   = form.input :status, collection: localized_statuses_collection(:task, Task.statuses)
-  = form.input :user_id, collection: User.all, as: :select
+  = form.input :user_id, collection: User.all, as: :select, default: current_user
   = form.input :project_id, collection: Project.all, as: :select
   = form.button :submit, class: "btn-success"
