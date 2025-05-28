@@ -1,6 +1,6 @@
 div id= dom_id(task)
   .card.mb-2.bg-light
-    .card-body.px-2.py-1
+    .card-body.px-2.py-2
       .mb-1.d-inline.w-auto
         = link_to task.title, [@parent, task], class: 'text-decoration-none h-6'
         = task_status(task)

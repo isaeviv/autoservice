@@ -79,3 +79,5 @@ group :test do
   gem "selenium-webdriver"
   gem "rails-controller-testing"
 end
+
+gem "pundit", "~> 2.5"

@@ -5,7 +5,7 @@ FactoryBot.define do
     association :user
     association :project
     association :workspace
-    
+
     after(:build) do |task|
       task.workspace ||= task.project.workspace
       task.user ||= task.workspace.owner

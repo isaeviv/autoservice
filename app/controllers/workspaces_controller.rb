@@ -79,6 +79,10 @@ class WorkspacesController < ApplicationController
       @parent ||= @workspace
     end
 
+    def authorize_workspace
+      authorize @workspace
+    end
+
     # Only allow a list of trusted parameters through.
     def workspace_params
       params.expect(workspace: [ :name, :description, :user_id ])
@@ -94,7 +98,6 @@ class WorkspacesController < ApplicationController
 
     def pagy_url_for(pagy, page, absolute: false)
       params = request.query_parameters.merge(pagy.vars[:page_param] => page, only_path: !absolute)
-      binding.pry
       url_for(params)
     end
 end
