@@ -36,7 +36,7 @@ class WorkspacesController < ApplicationController
     @workspace.owner = current_user # set owner
     respond_to do |format|
       if @workspace.save
-        format.html { redirect_to @workspace, notice: "Workspace was successfully created." }
+        format.html { redirect_to @workspace, notice: I18n.t("flash.actions.create.notice", resource_name: Workspace.model_name.human) }
         format.json { render :show, status: :created, location: @workspace }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -49,7 +49,7 @@ class WorkspacesController < ApplicationController
   def update
     respond_to do |format|
       if @workspace.update(workspace_params)
-        format.html { redirect_to @workspace, notice: "Workspace was successfully updated." }
+        format.html { redirect_to @workspace, notice: I18n.t("flash.actions.update.notice", resource_name: Workspace.model_name.human) }
         format.json { render :show, status: :ok, location: @workspace }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -63,7 +63,7 @@ class WorkspacesController < ApplicationController
     @workspace.destroy!
 
     respond_to do |format|
-      format.html { redirect_to workspaces_path, status: :see_other, notice: "Workspace was successfully destroyed." }
+      format.html { redirect_to workspaces_path, notice: I18n.t("flash.actions.destroy.notice", resource_name: Workspace.model_name.human) }
       format.json { head :no_content }
     end
   end

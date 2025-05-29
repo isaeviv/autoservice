@@ -39,4 +39,33 @@ en:
     actions:
       edit: Edit
       delete: Delete
+ru:
+  views:
+    tasks:
+      title: Задачи
+    projects:
+      title: Проекты
+    workspaces:
+        title: Рабочие пространства
+    alerts:
+      error:
+        title: Ошибка!
+    actions:
+      edit: Редактировать
+      delete: Удалить
+kjh:
+  views:
+    tasks:
+      title: Задачалар
+    projects:
+      title: Проекттер
+    workspaces:
+        title: Чир тоғызылaр
+    alerts:
+      error:
+        title: Ошибка!
+    actions:
+      edit: Алыстырарға
+      delete: Суурыбызарға
+
 

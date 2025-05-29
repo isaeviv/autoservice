@@ -3,13 +3,10 @@
 .mb-3
   span.h1
     =t('views.tasks.title')
+  = link_to [:new, @parent, :task], class: "w-auto btn btn-success float-end", data: { turbo: false }  do
+    = fa_icon("plus")
 #tasks
-  .row
-    .col-10
-      == pagy_bootstrap_nav(@pagy_tasks)
-    .col-2
-      = link_to [:new, @parent, :task], class: "w-auto btn btn-success float-end", data: { turbo: false }  do
-        = fa_icon("plus")
+  == pagy_bootstrap_nav(@pagy_tasks)
   .mb-3.mt-2
     = render @tasks
   == pagy_bootstrap_nav(@pagy_tasks)

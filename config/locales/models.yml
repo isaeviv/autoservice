@@ -16,4 +16,23 @@ ru:
       workspace:
         name: Имя
         description: Описание
+kjh:
+  activerecord:
+    attributes:
+      task:
+        title: Ады
+        description: Пасханы
+        status: Оңдай
+        statuses:
+          open: Азых
+          in_progress: Тоғыста
+          suspended: Тохта
+          completed: Тоозылған
+          closed: Чабыл
+        user: Пользователь
+        project: Проект
+      workspace:
+        name: Ады
+        description: Пасханы
+        
         

@@ -1,0 +1,24 @@
+ru:
+  flash:
+    actions:
+      create:
+        notice: "%{resource_name} успешно создан(а)."
+        alert: "Не удалось создать %{resource_name}."
+      update:
+        notice: "%{resource_name} успешно обновлен(а)."
+        alert: "Не удалось обновить %{resource_name}."
+      destroy:
+        notice: "%{resource_name} успешно удален(а)."
+        alert: "Не удалось удалить %{resource_name}."
+en:
+  flash:
+    actions:
+      create:
+        notice: "%{resource_name} was successfully created."
+        alert: "Failed to create %{resource_name}."
+      update:
+        notice: "%{resource_name} was successfully updated."
+        alert: "Failed to update %{resource_name}."
+      destroy:
+        notice: "%{resource_name} was successfully deleted."
+        alert: "Failed to delete %{resource_name}."

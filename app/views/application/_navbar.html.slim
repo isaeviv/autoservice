@@ -1,6 +1,9 @@
 nav.navbar.navbar-dark.navbar-expand-lg.bg-primary
   .container-fluid
-    = link_to 'Autoservice', root_path, class: 'navbar-brand'
+    - if current_workspace
+      = link_to 'Autoservice', workspace_path(current_workspace), class: 'navbar-brand'
+    - else
+      = link_to 'Autoservice', root_path, class: 'navbar-brand'
     button.navbar-toggler[type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
       span.navbar-toggler-icon
   #navbarNavDropdown.collapse.navbar-collapse

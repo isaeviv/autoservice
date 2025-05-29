@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_workspace  
+  before_action :set_workspace
   before_action :set_project, only: %i[ show edit update destroy ]
 
   # GET /projects or /projects.json
@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
     @project = @workspace.projects.new(project_params)
     respond_to do |format|
       if @project.save
-        format.html { redirect_to [@workspace, @project], notice: "Project was successfully created." }
+        format.html { redirect_to [ @workspace, @project ], notice: I18n.t("flash.actions.create.notice", resource_name: Project.model_name.human) }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -42,7 +42,7 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to [@workspace, @project], notice: "Project was successfully updated." }
+        format.html { redirect_to [ @workspace, @project ], notice: I18n.t("flash.actions.update.notice", resource_name: Project.model_name.human) }
         format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -56,7 +56,7 @@ class ProjectsController < ApplicationController
     @project.destroy!
 
     respond_to do |format|
-      format.html { redirect_to workspace_projects_path(@workspace), status: :see_other, notice: "Project was successfully destroyed." }
+      format.html { redirect_to workspace_projects_path(@workspace), status: :see_other, notice: I18n.t("flash.actions.destroy.notice", resource_name: Project.model_name.human) }
       format.json { head :no_content }
     end
   end
