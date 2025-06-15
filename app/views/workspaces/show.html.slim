@@ -1,22 +1,47 @@
 - breadcrumb :workspace, @workspace
-h1
+h1.mb-3
   span.me-3
     = @workspace.name
-  hr
+  .float-end
+    = link_to t('views.actions.edit'), [:edit, @workspace], class: "btn btn-warning" 
+    = link_to t('views.actions.delete'), [@workspace], class: "btn btn-danger mx-1", data: {'turbo-method'=> :delete}
 .mb-3
-  dl.row
-    dt.col-sm-1= Workspace.human_attribute_name(:owner)
-    dl.col-sm-11
-      = link_to "#", class: 'mx-1' do 
-        = @workspace.owner.full_name
-    dt.col-sm-1= Workspace.human_attribute_name(:created_at)
-    dl.col-sm-11= local_time_ago(@workspace.created_at)
-
-  = @workspace.description
-  hr
+  .row
+    .col-lg-8.col-md-12
+      .shadow.border.rounded.p-2.mb-3.workspace-description
+        dl.row
+          dt.col-sm-2= Workspace.human_attribute_name(:owner)
+          dl.col-sm-10
+            = link_to "#", class: 'mx-1' do 
+              = @workspace.owner.full_name
+          dt.col-sm-2= Workspace.human_attribute_name(:created_at)
+          dl.col-sm-10= local_time_ago(@workspace.created_at)
+        = @workspace.description
+    .col-lg-4.col-md-12
+      .shadow.border.rounded.p-2.mb-3.workspace-stats
+        .my-1
+          b Всего задач:
+          span.badge.bg-secondary.mx-1
+            = @workspace.tasks.count
+        .my-1 
+          b Завершены:
+          span.badge.bg-success.mx-1
+            = @workspace.tasks.completed.count
+        .my-1
+          b Открыты:
+          span.badge.bg-primary.mx-1
+            = @workspace.tasks.open.count
 .mb-3
-  = link_to t('views.actions.edit'), [:edit, @workspace], class: "btn btn-warning" 
-  = link_to t('views.actions.delete'), [@workspace], class: "btn btn-danger mx-1", data: {'turbo-method'=> :delete}
-.mb-3
-  = link_to t('views.tasks.title'), workspace_tasks_path(@workspace, scope: :tasks), class: 'btn btn-primary mr-1'
-  = link_to t('views.projects.title'), workspace_projects_path(@workspace, scope: :projects), class: 'btn btn-secondary mx-1'
+  .row
+    .col-lg-6.col-md-12
+      .shadow.border.rounded.p-2
+        .mb-1
+          span.h4 = t('views.tasks.title')
+          = link_to 'Смотреть все', workspace_tasks_path(@workspace), class: 'float-end'
+        = render @tasks
+    .col-lg-6.col-md-12
+      .shadow.border.rounded.p-2
+        .mb-1
+          span.h4 = t('views.projects.title')
+          = link_to 'Смотреть все', workspace_projects_path(@workspace), class: 'float-end'
+        = render @projects

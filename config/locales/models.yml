@@ -16,6 +16,8 @@ ru:
       workspace:
         name: Имя
         description: Описание
+        owner: Владелец
+        created_at: Создано
 kjh:
   activerecord:
     attributes:
@@ -34,5 +36,7 @@ kjh:
       workspace:
         name: Ады
         description: Пасханы
+        owner: Ээзі
+        created_at: Создано
         
         

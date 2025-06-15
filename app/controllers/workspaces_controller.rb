@@ -12,9 +12,8 @@ class WorkspacesController < ApplicationController
 
   # GET /workspaces/1 or /workspaces/1.json
   def show
-    # @pagy_tasks, @tasks =    pagy(@workspace.tasks, params: { scope: :tasks }, limit: 2) if tasks_scope?
-    #   @pagy_projects, @projects = pagy(@workspace.projects, params: { scope: :projects }, limit: 1) if projects_scope?
-    # @projects = @workspace.projects
+    @tasks = @workspace.tasks.order(created_at: :desc).limit(10)
+    @projects = @workspace.projects.limit(5)
 
     respond_to do |format|
       format.html
