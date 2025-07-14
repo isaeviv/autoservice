@@ -13,6 +13,8 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1 or /projects/1.json
   def show
+    @parent = @project
+    @tasks = @project.tasks.order(created_at: :desc)
   end
 
   # GET /projects/new
