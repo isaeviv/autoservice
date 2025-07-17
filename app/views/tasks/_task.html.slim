@@ -2,12 +2,12 @@ div id= dom_id(task)
   .card.mb-2.bg-light
     .card-body.px-2.py-2
       .mb-1.d-inline.w-auto
-        = link_to task.title, [@workspace, @parent, task], class: 'text-decoration-none h-6'
+        = link_to task.title, [@parent, task], class: 'text-decoration-none h-6'
         = task_status(task)
       .btn-group.float-end
-        = link_to [:edit, @workspace, @parent, task], class: 'btn btn-warning btn-sm' do
+        = link_to [:edit, @parent, task], class: 'btn btn-warning btn-sm' do
           = fa_icon('pencil')
-        = link_to [@workspace, @parent, task], class: 'btn btn-danger btn-sm', data: {'turbo-method'=> :delete} do
+        = link_to [@parent, task], class: 'btn btn-danger btn-sm', data: {'turbo-method'=> :delete} do
           = fa_icon('trash')
       div
         = local_time_ago(task.created_at)

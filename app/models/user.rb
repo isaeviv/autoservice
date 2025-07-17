@@ -13,6 +13,6 @@ class User < ApplicationRecord
   validates_presence_of :surname
 
   def full_name
-    [name, surname].join(" ")
+    [ name, surname ].join(" ")
   end
 end

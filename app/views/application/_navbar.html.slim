@@ -18,8 +18,7 @@ nav.navbar.navbar-expand-lg.bg-primary-subtle
           = link_to current_user.name, '#', class: 'nav-link dropdown-toggle', role:"button", data: {'bs-toggle'=> "dropdown", "bs-display" => "static"}, aria: { expanded: true }
           ul.dropdown-menu.dropdown-menu-lg-end
             li
-              a.dropdown-item[href="#"]
-                | Action
+              = link_to 'Profile', user_path(current_user), class: 'dropdown-item'
             li
               a.dropdown-item[href="#"]
                 | Another action
