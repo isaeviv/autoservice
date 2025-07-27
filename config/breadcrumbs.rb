@@ -1,5 +1,14 @@
 crumb :workspaces do
-  link "Workspaces", workspaces_path
+  link I18n.t("views.workspaces.title"), workspaces_path
+end
+
+crumb :users do
+  link I18n.t("views.users.title"), "#"
+end
+
+crumb :user do |user|
+  link user.full_name, user
+  parent :users
 end
 
 crumb :workspace do |workspace|
@@ -8,7 +17,7 @@ crumb :workspace do |workspace|
 end
 
 crumb :projects do |workspace|
-  link "Projects", workspace_projects_path(workspace)
+  link I18n.t("views.projects.title"), workspace_projects_path(workspace)
   parent :workspace, workspace
 end
 
@@ -30,7 +39,7 @@ end
 
 
 crumb :tasks do |workspace|
-  link "Tasks", workspace_tasks_path(workspace)
+  link I18n.t("views.tasks.title"), workspace_tasks_path(workspace)
   parent :workspace, workspace
 end
 

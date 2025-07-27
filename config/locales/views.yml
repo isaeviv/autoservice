@@ -33,6 +33,10 @@ en:
       title: Tasks
     projects:
       title: Projects
+    users:
+      title: Users
+    workspaces:
+        title: Workspaces
     alerts:
       error:
         title: Error!
@@ -47,6 +51,8 @@ ru:
       title: Проекты
     workspaces:
         title: Рабочие пространства
+    users:
+      title: Пользователи
     alerts:
       error:
         title: Ошибка!
@@ -61,6 +67,8 @@ kjh:
       title: Проекттер
     workspaces:
         title: Чир тоғызылaр
+    users:
+      title: Кізілер
     alerts:
       error:
         title: Ошибка!

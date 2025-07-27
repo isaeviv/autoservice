@@ -68,6 +68,8 @@ class TasksController < ApplicationController
           Projects.find(params[:project_id])
       elsif params[:workspace_id].present?
           Workspace.find(params[:workspace_id])
+      else
+        current_workspace
       end
     end
 

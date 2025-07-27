@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1 or /projects/1.json
   def show
-    @parent = @project
+    @parent = @workspace
     @tasks = @project.tasks.order(created_at: :desc)
   end
 
@@ -70,7 +70,7 @@ class ProjectsController < ApplicationController
     end
 
     def set_workspace
-      @workspace = Workspace.find(params.expect(:workspace_id))
+      @workspace = Workspace.find(params.expect(:workspace_id)) || current_workspace
     end
 
     # Only allow a list of trusted parameters through.

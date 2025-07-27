@@ -18,6 +18,12 @@ ru:
         description: Описание
         owner: Владелец
         created_at: Создано
+      user:
+        name: Имя
+        surname: Фамилия
+        patronymic: Отчество
+        email: Почта
+        created_at: Дата регистрации
 kjh:
   activerecord:
     attributes:
@@ -38,5 +44,11 @@ kjh:
         description: Пасханы
         owner: Ээзі
         created_at: Создано
+      user:
+        name: Ады
+        surname: Фамилиязы
+        patronymic: Отчествозы
+        email: Почтазы
+        created_at: Регистрация кӱні
         
         

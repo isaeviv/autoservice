@@ -62,11 +62,11 @@ module ApplicationHelper
     }
     content_tag :div, class: "progress-stacked" do
       config.map do |key, options|
-        content_tag(:div, class: "progress", role: "progressbar", 
-                  aria: { label: "Segment one", valuenow: options[:percentage], valuemin: 0, valuemax: 100},
-                  data: { bs_toggle:"tooltip", bs_placement:"top", bs_title: "#{key}: #{options[:percentage]}% | #{options[:count]} count"},
+        content_tag(:div, class: "progress", role: "progressbar",
+                  aria: { label: "Segment one", valuenow: options[:percentage], valuemin: 0, valuemax: 100 },
+                  data: { bs_toggle: "tooltip", bs_placement: "top", bs_title: "#{options[:count]}" },
                   style: "width: #{options[:percentage]}%") do
-          content_tag :div, nil, class: "progress-bar bg-#{options[:class]}"
+          content_tag :div, "#{options[:percentage]}%", class: "progress-bar bg-#{options[:class]}"
         end
       end.join.html_safe
     end

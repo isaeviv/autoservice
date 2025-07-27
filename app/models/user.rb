@@ -1,8 +1,12 @@
 class User < ApplicationRecord
+  # This constant contains attributes, which shows in views.
+  DISPLAYABLE_ATTRIBUTES = [ :name, :surname, :patronymic, :email, :created_at ]
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
   has_many  :projects
   has_many  :tasks
   has_many  :workspace_memberships
