@@ -16,6 +16,8 @@ class User < ApplicationRecord
   validates_presence_of :name
   validates_presence_of :surname
 
+  mount_uploader :photo, UserPhotoUploader
+
   def full_name
     [ name, surname ].join(" ")
   end

@@ -16,6 +16,7 @@ gem "turbo-rails"
 gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+gem "carrierwave"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -44,11 +45,12 @@ gem "devise", "~> 4.9"
 gem "devise-i18n"
 gem "sassc-rails"
 gem "bootstrap", "~> 5.3.3"
-gem 'simple_form'
+gem "simple_form"
 gem "rails-i18n"
 gem "local_time"
 gem "pagy"
-gem "font-awesome-rails"
+gem "font_awesome5_rails"
+gem "inline_svg"
 gem "action_policy"
 gem "gretel"
 
@@ -61,7 +63,7 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
-  gem 'shoulda', '~> 3.0'
+  gem "shoulda", "~> 3.0"
   gem "shoulda-matchers"
   gem "rspec-mocks"
 end

@@ -11,7 +11,7 @@
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
-@import "font-awesome";
+@import 'font_awesome5_webfont';
 @import "actiontext";
 
 .workspace-stats{
@@ -20,4 +20,8 @@
 
 .workspace-description{
   min-height: 162px;
+}
+
+.default_avatar_middle_thumb{
+  max-width: 150px;
 }
