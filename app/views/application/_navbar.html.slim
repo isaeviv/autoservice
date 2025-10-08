@@ -7,7 +7,7 @@ nav.navbar.navbar-expand-lg.bg-primary-subtle
     button.navbar-toggler[type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
       span.navbar-toggler-icon
   #navbarNavDropdown.collapse.navbar-collapse
-    ul.navbar-nav
+    ul.navbar-nav.mx-3
       - if current_workspace
         li.nav-item.text-nowrap
           = link_to t('views.tasks.title'), workspace_tasks_path(current_workspace), class: 'nav-link'
@@ -19,9 +19,6 @@ nav.navbar.navbar-expand-lg.bg-primary-subtle
           ul.dropdown-menu.dropdown-menu-lg-end
             li
               = link_to 'Profile', user_path(current_user), class: 'dropdown-item'
-            li
-              a.dropdown-item[href="#"]
-                | Another action
             li
               =link_to t('devise.sessions.destroy.sign_out'), destroy_user_session_path, class: 'dropdown-item', data: {'turbo-method'=> :delete}
       - else

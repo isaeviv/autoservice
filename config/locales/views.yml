@@ -40,6 +40,7 @@ en:
     alerts:
       error:
         title: Error!
+      delete_confirm: "This action will destroy %{object_name} '%{object_title}'. Are you sure?"
     actions:
       edit: Edit
       delete: Delete
@@ -56,6 +57,7 @@ ru:
     alerts:
       error:
         title: Ошибка!
+      delete_confirm: "Это действие удалит %{object_name} '%{object_title}'. Вы уверены?"
     actions:
       edit: Редактировать
       delete: Удалить
@@ -72,6 +74,7 @@ kjh:
     alerts:
       error:
         title: Ошибка!
+      delete_confirm: "Это действие удалит %{object_name} '%{object_title}'. Вы уверены?"
     actions:
       edit: Алыстырарға
       delete: Суурыбызарға

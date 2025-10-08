@@ -1,5 +1,16 @@
 ru:
   activerecord:
+    models:
+      task:
+        few: Задачи
+        many: Задач
+        one: Задача
+        other: Задачи
+      project:
+        few: Проектов
+        many: Проектов
+        one: Проект
+        other: Проекты
     attributes:
       task:
         title: Заголовок

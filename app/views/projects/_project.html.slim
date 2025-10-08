@@ -2,10 +2,10 @@
   .card-body.px-2.py-1
     .mb-1.d-inline.w-auto
       = link_to project.name, [@workspace, project], class: 'text-decoration-none h-6'
-    .btn-group.float-end
-      = link_to [:edit, @workspace, project], class: 'btn btn-warning btn-sm' do
-        = fa_icon('pencil')
-      = link_to [@workspace, project], class: 'btn btn-danger btn-sm', data: {'turbo-method'=> :delete} do
+    .float-end
+      = link_to [:edit, @workspace, project], class: 'btn btn-warning btn-sm mx-1' do
+        = fa_icon('pen')
+      = link_to [@workspace, project], class: 'btn btn-outline-danger btn-sm', data: {'turbo-method'=> :delete, 'turbo-confirm' => I18n.t('views.alerts.delete_confirm', object_name: project.model_name.human, object_title: project.name)} do
         = fa_icon('trash')
     div
       = local_time_ago(project.created_at)
